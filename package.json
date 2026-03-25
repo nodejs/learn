@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "prebuild": "node scripts/generate-component-config.mjs",
+    "build": "doc-kit generate -t web -t orama-db --config-file doc-kit.config.mjs",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@node-core/doc-kit": "1.2.1",
+    "@node-core/remark-lint": "^1.3.0",
+    "eslint": "^10.1.0",
+    "eslint-plugin-mdx": "^3.7.0",
+    "globals": "^17.4.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
+    "typescript-eslint": "^8.57.2"
+  },
+  "dependencies": {
+    "@node-core/ui-components": "^1.6.3"
+  }
+}
