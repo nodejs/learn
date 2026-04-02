@@ -4,7 +4,7 @@ import { join } from 'node:path';
 /** @type {import('@node-core/doc-kit/src/utils/configuration/types.d.ts').Configuration} */
 export default {
   global: {
-    output: 'out',
+    output: 'out/learn',
     input: ['pages/**/*.md'],
   },
   web: {
