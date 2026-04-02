@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: avivkeller
--->
+---
 
 # Discover Promises in Node.js
 

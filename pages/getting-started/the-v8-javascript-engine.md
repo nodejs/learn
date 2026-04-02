@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, smfoote, co16353sidak, MylesBorins, LaRuaNa, andys8, ahmadawais, karlhorky, aymen94
--->
+---
 
 # The V8 JavaScript Engine
 

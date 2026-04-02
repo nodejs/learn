@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: ovflowd, HassanBahati
--->
+---
 
 # Overview of Blocking vs Non-Blocking
 

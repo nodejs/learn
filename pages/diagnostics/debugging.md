@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Debugging Node.js
 
 This guide will help you get started debugging your Node.js apps and scripts.

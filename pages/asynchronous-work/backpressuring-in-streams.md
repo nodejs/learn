@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Backpressuring in Streams
 
 There is a general problem that occurs during data handling called

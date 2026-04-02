@@ -7,13 +7,10 @@ export default {
     output: 'out',
     input: ['pages/**/*.md'],
   },
-  'jsx-ast': {
-    // TODO(@avivkeller): Hook this up to render at nodejs.org/learn
-    pageURL: 'https://nodejs.github.io/learn{path}.html',
-    editURL: 'https://github.com/nodejs/learn/edit/main/pages{path}.md',
-  },
   web: {
     title: '',
+    pageURL: 'https://nodejs.org/learn{path}.html',
+    editURL: 'https://github.com/nodejs/learn/edit/main/pages{path}.md',
     imports: {
       ...web.defaultConfiguration.imports,
       '#theme/Navigation': join(

@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Using Heap Snapshot
 
 You can take a Heap Snapshot from your running application and load it into

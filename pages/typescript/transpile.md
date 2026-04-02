@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: AugustinMauroy
--->
+---
 
 # Running TypeScript code using transpilation
 

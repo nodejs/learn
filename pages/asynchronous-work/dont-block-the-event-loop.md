@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Don't Block the Event Loop (or the Worker Pool)
 
 ## Should you read this guide?

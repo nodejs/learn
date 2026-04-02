@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Tracing garbage collection
 
 This guide will go through the fundamentals of garbage collection traces.

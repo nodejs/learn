@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: JakobJingleheimer
--->
+---
 
 # Using Node.js's test runner
 

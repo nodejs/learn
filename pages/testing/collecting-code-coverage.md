@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: avivkeller
--->
+---
 
 # Collecting code coverage in Node.js
 

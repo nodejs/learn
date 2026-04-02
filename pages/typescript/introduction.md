@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: sbielenica, ovflowd, vaishnav-mk, AugustinMauroy
--->
+---
 
 # Introduction to TypeScript
 

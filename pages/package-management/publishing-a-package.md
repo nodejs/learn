@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: JakobJingleheimer
--->
+---
 
 # Publishing a package
 

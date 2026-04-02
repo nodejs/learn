@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Anatomy of an HTTP Transaction
 
 The purpose of this guide is to impart a solid understanding of the process of

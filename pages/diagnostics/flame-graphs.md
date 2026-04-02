@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Flame Graphs
 
 ## What's a flame graph useful for?

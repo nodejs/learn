@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: ovflowd
--->
+---
 
 # ECMAScript 2015 (ES6) and beyond
 

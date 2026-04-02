@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: benhalverson, LankyMoose
--->
+---
 
 # Using the Fetch API with Undici in Node.js
 

@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # User Journey
 
 These diagnostics guides were created by the [Diagnostics Working Group][]

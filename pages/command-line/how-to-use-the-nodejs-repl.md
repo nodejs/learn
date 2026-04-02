@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, LaRuaNa, ahmadawais, vaishnav-mk, AugustinMauroy
--->
+---
 
 # How to use the Node.js REPL
 

@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Using Heap Profiler
 
 The heap profiler acts on top of V8 to capture allocations over time. In this

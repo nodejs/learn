@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Memory
 
 In this document you can learn about how to debug memory related issues.

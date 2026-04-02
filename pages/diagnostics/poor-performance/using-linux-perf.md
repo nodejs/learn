@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Using Linux Perf
 
 [Linux Perf](https://perf.wiki.kernel.org/index.php/Main_Page) provides low level CPU profiling with JavaScript,

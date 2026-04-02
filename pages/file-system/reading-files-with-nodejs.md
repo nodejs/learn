@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, LaRuaNa, ahmadawais, clean99, benhalverson
--->
+---
 
 # Reading files with Node.js
 

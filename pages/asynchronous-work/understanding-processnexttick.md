@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, LaRuaNa, ahmadawais, ovflowd, marksist300
--->
+---
 
 # Understanding process.nextTick()
 
