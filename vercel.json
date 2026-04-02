@@ -18,5 +18,11 @@
       "destination": "/learn/$1",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/learn/_vercel/(.*)",
+      "destination": "/_vercel/$1"
+    }
   ]
 }
