@@ -6,8 +6,7 @@ import { SpeedInsights } from '@vercel/speed-insights/react';
 import NavBar from '../Navigation';
 import MetaBar from '../Metabar';
 import SideBar from '../Sidebar';
-
-import Footer from '#theme/Footer';
+import Footer from '../Footer';
 
 /**
  * @typedef {Object} Props
@@ -22,8 +21,8 @@ import Footer from '#theme/Footer';
  */
 export default ({ metadata, headings, readingTime, children }) => (
   <>
-    <Analytics />
-    <SpeedInsights />
+    <Analytics basePath="/learn/_vercel" />
+    <SpeedInsights basePath="/learn/_vercel" />
     <NavBar />
     <Article>
       <SideBar metadata={metadata} />
@@ -40,6 +39,6 @@ export default ({ metadata, headings, readingTime, children }) => (
         />
       </div>
     </Article>
-    <Footer />
+    <Footer metadata={metadata} />
   </>
 );

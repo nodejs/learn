@@ -18,5 +18,11 @@
       "destination": "/learn/$1",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/learn/_vercel/(.*)",
+      "destination": "https://node-learn-pages.vercel.app/_vercel/$1"
+    }
   ]
 }
