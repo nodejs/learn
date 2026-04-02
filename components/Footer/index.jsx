@@ -78,11 +78,13 @@ const LegalSlot = (
       of them does not imply any affiliation with or endorsement by them.
     </p>
 
-    {FOOTER_LINKS.map(({ link, text }) => (
-      <NavItem key={link} type="footer" href={link}>
-        {text}
-      </NavItem>
-    ))}
+    <p>
+      {FOOTER_LINKS.map(({ link, text }) => (
+        <NavItem key={link} type="footer" href={link}>
+          {text}
+        </NavItem>
+      ))}
+    </p>
   </>
 );
 
