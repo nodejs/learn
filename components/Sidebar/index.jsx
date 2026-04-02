@@ -7,13 +7,12 @@ const categories = [
   ['getting-started', 'Getting Started'],
   ['command-line', 'Command Line'],
   ['http', 'HTTP'],
-  ['file-system', 'File System'],
+  ['manipulating-files', 'Manipulating Files'],
   ['asynchronous-work', 'Asynchronous Work'],
   ['typescript', 'TypeScript'],
-  ['package-management', 'Package Management'],
+  ['modules', 'Modules'],
   ['diagnostics', 'Diagnostics'],
-  ['testing', 'Testing'],
-  ['security', 'Security'],
+  ['test-runner', 'Test Runner'],
 ];
 
 /** @type {Map<string, Array<{ heading: string, path: string }>>} */
