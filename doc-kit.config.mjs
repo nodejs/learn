@@ -13,18 +13,7 @@ export default {
     editURL: 'https://github.com/nodejs/learn/edit/main/pages{path}.md',
     imports: {
       ...web.defaultConfiguration.imports,
-      '#theme/Navigation': join(
-        import.meta.dirname,
-        'components/Navigation/index.jsx'
-      ),
-      '#theme/Sidebar': join(
-        import.meta.dirname,
-        'components/Sidebar/index.jsx'
-      ),
-      '#theme/Metabar': join(
-        import.meta.dirname,
-        'components/Metabar/index.jsx'
-      ),
+      '#theme/Layout': join(import.meta.dirname, 'components/Layout/index.jsx'),
     },
   },
 };
