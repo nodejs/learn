@@ -1,4 +1,22 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "out"
+  "outputDirectory": "out",
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/learn/",
+      "permanent": true
+    },
+    {
+      "source": "/learn",
+      "destination": "/learn/",
+      "permanent": true
+    },
+    {
+      "source": "/learn/(.*)/",
+      "destination": "/learn/$1",
+      "permanent": true
+    }
+  ]
 }
