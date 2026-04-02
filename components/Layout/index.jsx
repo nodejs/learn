@@ -21,8 +21,8 @@ import Footer from '../Footer';
  */
 export default ({ metadata, headings, readingTime, children }) => (
   <>
-    <Analytics basePath="/learn/_vercel" />
-    <SpeedInsights basePath="/learn/_vercel" />
+    <Analytics />
+    <SpeedInsights />
     <NavBar />
     <Article>
       <SideBar metadata={metadata} />
