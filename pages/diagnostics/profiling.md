@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Profiling Node.js Applications
 
 Profiling a Node.js application involves measuring its performance by analyzing

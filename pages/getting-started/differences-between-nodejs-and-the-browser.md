@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, ollelauribostrom, MylesBorins, fhemberger, LaRuaNa, ahmadawais, karlhorky
--->
+---
 
 # Differences between Node.js and the Browser
 

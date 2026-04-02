@@ -7,7 +7,6 @@ import SearchBox from '@node-core/doc-kit/src/generators/web/ui/components/Searc
 import { useTheme } from '@node-core/doc-kit/src/generators/web/ui/hooks/useTheme.mjs';
 
 import Logo from '#theme/Logo';
-import { topNav } from '../config.json' with { type: 'json' };
 
 /**
  * NavBar component that displays the headings, search, etc.
@@ -19,7 +18,23 @@ export default () => {
     <NavBar
       Logo={Logo}
       sidebarItemTogglerAriaLabel="Toggle navigation menu"
-      navItems={topNav}
+      navItems={[
+        { link: '/learn', text: 'Learn' },
+        { link: '/about', text: 'About' },
+        { link: '/download', text: 'Download' },
+        { link: '/blog', text: 'Blog' },
+        { link: 'https://nodejs.org/docs/latest/api/', text: 'Docs' },
+        {
+          link: 'https://github.com/nodejs/node/blob/main/CONTRIBUTING.md',
+          text: 'Contribute',
+          target: '_blank',
+        },
+        {
+          link: 'https://training.linuxfoundation.org/openjs/',
+          text: 'Courses',
+          target: '_blank',
+        },
+      ]}
     >
       <SearchBox />
       <ThemeToggle

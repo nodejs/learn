@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, liangpeili, LaRuaNa, ahmadawais, clean99
--->
+---
 
 # Working with folders in Node.js
 

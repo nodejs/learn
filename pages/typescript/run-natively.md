@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: AugustinMauroy, khaosdoctor, jakebailey, robpalme
--->
+---
 
 # Running TypeScript Natively
 

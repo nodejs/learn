@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # How to publish a Node-API version of a package alongside a non-Node-API version
 
 The following steps are illustrated using the package `iotivity-node`:

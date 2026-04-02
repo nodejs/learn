@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, LaRuaNa, amiller-gh, ahmadawais, ovflowd
--->
+---
 
 # JavaScript Asynchronous Programming and Callbacks
 

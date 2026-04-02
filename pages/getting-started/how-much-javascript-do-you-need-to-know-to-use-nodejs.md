@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, ollelauribostrom, MylesBorins, fhemberger, LaRuaNa, ahmadawais, elanandkumar, ovflowd, vaishnav-mk
--->
+---
 
 # How much JavaScript do you need to know to use Node.js?
 

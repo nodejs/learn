@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Live Debugging
 
 In this document you can learn about how to live debug a Node.js process.

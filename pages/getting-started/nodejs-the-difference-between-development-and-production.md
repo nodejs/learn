@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, LaRuaNa, ahmadawais, RenanTKN, mcollina
--->
+---
 
 # Node.js, the difference between development and production
 

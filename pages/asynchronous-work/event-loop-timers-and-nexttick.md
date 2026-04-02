@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # The Node.js Event Loop
 
 ## What is the Event Loop?

@@ -2,19 +2,15 @@ import MetaBar from '@node-core/ui-components/Containers/MetaBar';
 import AvatarGroup from '@node-core/ui-components/Common/AvatarGroup';
 import GitHubIcon from '@node-core/ui-components/Icons/Social/GitHub';
 
-import { authors } from '../config.json' with { type: 'json' };
+import { editURL } from '#theme/config';
 
-/**
- * @typedef MetaBarProps
- * @property {Array<import('@vcarl/remark-headings').Heading>} headings
- * @property {string} readingTime
- * @property {Array<[string, string]>} viewAs
- * @property {string} editThisPage
- */
-
-/** @param {MetaBarProps} props */
-export default ({ headings = [], readingTime, viewAs = [], editThisPage }) => {
-  const pageAuthors = authors[editThisPage];
+export default ({ metadata, headings = [], readingTime }) => {
+  const editThisPage = editURL.replace('{path}', metadata.path);
+  const authors = metadata.authors?.split(',').map(id => ({
+    image: `https://avatars.githubusercontent.com/${id.trim()}`,
+    url: `https://github.com/${id.trim()}`,
+    nickname: id,
+  }));
 
   return (
     <MetaBar
@@ -22,11 +18,9 @@ export default ({ headings = [], readingTime, viewAs = [], editThisPage }) => {
       headings={{ items: headings }}
       items={{
         'Reading Time': readingTime,
-        ...(CLIENT && pageAuthors?.length
+        ...(CLIENT && authors?.length
           ? {
-              Authors: (
-                <AvatarGroup avatars={pageAuthors} as="a" clickable limit={5} />
-              ),
+              Authors: <AvatarGroup avatars={authors} as="a" limit={5} />,
             }
           : {}),
         Contribute: (

@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # ABI Stability
 
 ## Introduction

@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, LaRuaNa, ahmadawais, akazyti, AugustinMauroy
--->
+---
 
 # Run Node.js scripts from the command line
 

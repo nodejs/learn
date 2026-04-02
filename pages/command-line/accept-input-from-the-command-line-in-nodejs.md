@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, LaRuaNa, ahmadawais
--->
+---
 
 # Accept input from the command line in Node.js
 

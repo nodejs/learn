@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # Poor Performance
 
 In this document you can learn about how to profile a Node.js process.

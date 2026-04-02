@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: lancemccluskey, ovflowd
--->
+---
 
 # Node.js with WebAssembly
 

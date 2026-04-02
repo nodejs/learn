@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, ZYSzys, MylesBorins, fhemberger, LaRuaNa, ahmadawais, clean99, ovflowd, vaishnav-mk
--->
+---
 
 # Node.js file stats
 

@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, potch, MylesBorins, fhemberger, LaRuaNa, amiller-gh, ahmadawais, AugustinMauroy
--->
+---
 
 # Output to the command line using Node.js
 

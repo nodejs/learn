@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, fhemberger, LaRuaNa, ahmadawais, ovflowd
--->
+---
 
 # The Node.js Event emitter
 

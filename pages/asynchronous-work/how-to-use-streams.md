@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: mcollina, ceres6, simoneb, codyzu
--->
+---
 
 # How To Use Streams
 

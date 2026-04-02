@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: AugustinMauroy
--->
+---
 
 # Discovering Node.js's test runner
 

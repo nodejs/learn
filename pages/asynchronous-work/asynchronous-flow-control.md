@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: aug2uag, ovflowd
--->
+---
 
 # Asynchronous flow control
 

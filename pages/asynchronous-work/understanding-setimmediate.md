@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: flaviocopes, MylesBorins, LaRuaNa, ahmadawais, clean99, ovflowd
--->
+---
 
 # Understanding setImmediate()
 

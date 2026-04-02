@@ -1,6 +1,6 @@
-<!-- YAML
+---
 authors: callezenwaka
--->
+---
 
 # Native WebSocket Client in Node.js
 

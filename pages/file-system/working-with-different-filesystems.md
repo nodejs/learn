@@ -1,6 +1,3 @@
-<!-- YAML
--->
-
 # How to Work with Different Filesystems
 
 Node.js exposes many features of the filesystem. But not all filesystems are alike.
