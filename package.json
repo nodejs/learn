@@ -18,7 +18,7 @@
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "remark-frontmatter": "^5.0.0",
-    "typescript-eslint": "^8.57.2"
+    "typescript-eslint": "^8.58.0"
   },
   "dependencies": {
     "@node-core/ui-components": "^1.6.3",
