@@ -11,7 +11,7 @@ import Logo from '#theme/Logo';
 /**
  * NavBar component that displays the headings, search, etc.
  */
-export default () => {
+export default ({ metadata }) => {
   const [theme, toggleTheme] = useTheme();
 
   return (
@@ -36,7 +36,7 @@ export default () => {
         },
       ]}
     >
-      <SearchBox />
+      <SearchBox pathname={metadata.path} />
       <ThemeToggle
         onClick={toggleTheme}
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
