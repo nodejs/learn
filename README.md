@@ -1,6 +1,6 @@
 # nodejs/learn
 
-Source content for the Node.js learning guides, published at https://nodejs.github.io/learn.
+Source content for the Node.js learning guides, published at https://nodejs.org/learn.
 
 This repository was created as part of
 [nodejs/nodejs.org#8612](https://github.com/nodejs/nodejs.org/issues/8612)
