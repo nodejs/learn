@@ -12,7 +12,7 @@ Welcome to the Node.js learning resources. Whether you're just getting started o
 - [File System](/learn/manipulating-files/nodejs-file-stats) — Read, write, and manipulate files
 - [Asynchronous Work](/learn/asynchronous-work/javascript-asynchronous-programming-and-callbacks) — Understand async patterns, promises, and the event loop
 - [TypeScript](/learn/typescript/introduction) — Use TypeScript with Node.js
-- [Package Management](/learn/package-management/an-introduction-to-the-npm-package-manager) — Publish and manage packages
+- [Package Management](/learn/getting-started/an-introduction-to-the-npm-package-manager) — Publish and manage packages
 - [Diagnostics](/learn/diagnostics/user-journey) — Debug performance and memory issues
-- [Testing](/learn/testing/introduction) — Write and run tests with the built-in test runner
-- [Security](/learn/security/security-best-practices) — Follow security best practices
+- [Testing](/learn/test-runner/introduction) — Write and run tests with the built-in test runner
+- [Security](/learn/getting-started/security-best-practices) — Follow security best practices
