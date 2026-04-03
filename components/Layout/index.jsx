@@ -23,7 +23,7 @@ export default ({ metadata, headings, readingTime, children }) => (
   <>
     <Analytics basePath="/learn/_vercel" />
     <SpeedInsights basePath="/learn/_vercel" />
-    <NavBar />
+    <NavBar metadata={metadata} />
     <Article>
       <SideBar metadata={metadata} />
       <div>
