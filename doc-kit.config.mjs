@@ -8,9 +8,16 @@ export default {
     input: ['pages/**/*.md'],
   },
   web: {
-    title: '',
-    pageURL: 'https://nodejs.org/learn{path}.html',
+    // Important Configuration
+    project: 'Node.js',
+    title: '{project} Learn',
+    baseURL: 'https://nodejs.org/learn',
+    pageURL: '{baseURL}{path}.html',
     editURL: 'https://github.com/nodejs/learn/edit/main/pages{path}.md',
+    useAbsoluteURLs: true,
+    templatePath: join(import.meta.dirname, 'template.html'),
+
+    // Imports
     imports: {
       ...web.defaultConfiguration.imports,
       '#theme/Layout': join(import.meta.dirname, 'components/Layout/index.jsx'),
