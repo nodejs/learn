@@ -8,7 +8,7 @@ This article covers items regarding TypeScript publishing specifically. Publishi
 
 Some important things to note:
 
-- Everything from [Publishing a package](../package-management/publishing-a-package) applies here.
+- Everything from [Publishing a package](/learn/modules/publishing-a-package) applies here.
   - Fields like `main` operate on _published_ content, so when TypeScript source-code is transpiled to JavaScript, JavaScript is the published content and `main` would point to a JavaScript file with a JavaScript file extension (ex `main.ts` → `"main": "main.js"`).
 
   - Fields like `scripts.test` operate on source-code, so they would use the file extensions of the source code (ex `"test": "node --test './src/**/*.test.ts'`).
