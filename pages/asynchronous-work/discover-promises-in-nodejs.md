@@ -365,7 +365,7 @@ console.log('Synchronous task executed');
 
 ### `setImmediate()`
 
-`setImmediate()` schedules a callback to be executed in the check phase of the Node.js [event loop](./event-loop-timers-and-nexttick), which runs after the poll phase, where most I/O callbacks are processed.
+`setImmediate()` schedules a callback to be executed in the check phase of the Node.js [event loop](/learn/asynchronous-work/event-loop-timers-and-nexttick), which runs after the poll phase, where most I/O callbacks are processed.
 
 ```js
 setImmediate(() => {
@@ -383,4 +383,4 @@ console.log('Synchronous task executed');
 
 Because these tasks execute outside of the current synchronous flow, uncaught exceptions inside these callbacks won't be caught by surrounding `try/catch` blocks and may crash the application if not properly managed (e.g., by attaching `.catch()` to Promises or using global error handlers like `process.on('uncaughtException')`).
 
-For more information on the Event Loop, and the execution order of various phases, please see the related article, [The Node.js Event Loop](./event-loop-timers-and-nexttick).
+For more information on the Event Loop, and the execution order of various phases, please see the related article, [The Node.js Event Loop](/learn/asynchronous-work/event-loop-timers-and-nexttick).

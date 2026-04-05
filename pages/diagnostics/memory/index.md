@@ -10,7 +10,7 @@ multi-tenant, business critical, and long-running, providing an accessible and
 efficient way of finding a memory leak is essential.
 
 You can also fine-tune memory to get specific results. Check out
-[Understanding and Tuning Memory](./understanding-and-tuning-memory) for more details.
+[Understanding and Tuning Memory](/learn/diagnostics/memory/understanding-and-tuning-memory) for more details.
 
 ### Symptoms
 
@@ -47,6 +47,6 @@ type of objects take and what variables are preventing them from being garbage
 collected. It can also help to know the allocation pattern of our program over
 time.
 
-- [Using Heap Profiler](./using-heap-profiler/)
-- [Using Heap Snapshot](./using-heap-snapshot/)
-- [GC Traces](./using-gc-traces)
+- [Using Heap Profiler](/learn/diagnostics/memory/using-heap-profiler/)
+- [Using Heap Snapshot](/learn/diagnostics/memory/using-heap-snapshot/)
+- [GC Traces](/learn/diagnostics/memory/using-gc-traces/)
