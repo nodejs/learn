@@ -1,6 +1,9 @@
 import web from '@node-core/doc-kit/src/generators/web/index.mjs';
 import { join } from 'node:path';
 
+const origin =
+  process.env.VERCEL_ENV === 'preview' ? process.env.VERCEL_URL : 'nodejs.org';
+
 /** @type {import('@node-core/doc-kit/src/utils/configuration/types.d.ts').Configuration} */
 export default {
   global: {
@@ -11,7 +14,7 @@ export default {
     // Important Configuration
     project: 'Node.js',
     title: '{project} Learn',
-    baseURL: 'https://nodejs.org/learn',
+    baseURL: `https://${origin}/learn`,
     pageURL: '{baseURL}{path}.html',
     editURL: 'https://github.com/nodejs/learn/edit/main/pages{path}.md',
     useAbsoluteURLs: true,
