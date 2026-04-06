@@ -2,6 +2,8 @@
 authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 ---
 
+# Pre-requisites
+
 ## C/C++ and JavaScript
 
 The purpose of Node-API is to enable you to use your existing or newly written C/C++ code from JavaScript. This assumes at least a passing familiarity with both JavaScript and C/C++. The level of familiarity necessary is dependent upon the complexity of your project and your involvement with the JavaScript and the C/C++.
