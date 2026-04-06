@@ -4,7 +4,7 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # Node-API
 
-[Node-API](https://nodejs.org/api/n-api.html) is a stable C API built into Node.js that lets C/C++ code create, read, and manipulate JavaScript values as if they were created by JavaScript itself. It was introduced experimentally in Node.js 8.0.0 and became stable (no longer behind a flag) in Node.js 12.
+[Node-API](https://nodejs.org/api/n-api.html) is a stable C API built into Node.js that lets C/C++ code create, read, and manipulate JavaScript values as if they were created by JavaScript itself. It was introduced experimentally in Node.js 8.0.0 and became stable (no longer behind a flag) in the Node.js 8/10 timeframe.
 
 Because Node-API is part of Node.js itself, it requires no additional installation.
 

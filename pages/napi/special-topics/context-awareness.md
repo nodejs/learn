@@ -4,7 +4,7 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # Context Awareness
 
-Node.js has historically run as a single-threaded process. This all changed with the introduction of [Worker Threads](https://nodejs.org/api/worker_threads.html#worker_threads_worker_threads) in Node 10. Worker Threads add a JavaScript-friendly concurrency abstraction that native add-on developers need to be aware of. What this means practically is that your native add-on may be loaded and unloaded more than once and its code may be executed concurrently in multiple threads. There are specific steps you must take to insure your native add-on code runs correctly.
+Node.js has historically run as a single-threaded process. This all changed with the introduction of [Worker Threads](https://nodejs.org/api/worker_threads.html#worker_threads_worker_threads) in Node 10. Worker Threads add a JavaScript-friendly concurrency abstraction that native add-on developers need to be aware of. What this means practically is that your native add-on may be loaded and unloaded more than once and its code may be executed concurrently in multiple threads. There are specific steps you must take to ensure your native add-on code runs correctly.
 
 The Worker Thread model specifies that each Worker runs completely independently of each other and communicate to the parent Worker using a MessagePort object supplied by the parent. This makes the Worker Threads essentially isolated from one another. The same is true for your native add-on.
 
@@ -20,9 +20,9 @@ The next sections describe two different techniques you can use to allocate and 
 
 ## Instance data
 
-Node-API gives you the ability to associate a single piece of memory your native-add allocates with the context under which it is running. This technique is called "instance data" and is useful when your native add-on allocates a single piece of data when its loaded.
+Node-API gives you the ability to associate a single piece of memory your native add-on allocates with the context under which it is running. This technique is called "instance data" and is useful when your native add-on allocates a single piece of data when its loaded.
 
-The `napi_set_instance_data` allows your native add-on to associate a single piece of allocated memory with the context under which you native add-on is loaded. The `napi_get_instance_data` can then be called anywhere in you native add-on to retrieve the location of the memory that was allocated.
+The `napi_set_instance_data` allows your native add-on to associate a single piece of allocated memory with the context under which your native add-on is loaded. The `napi_get_instance_data` can then be called anywhere in you native add-on to retrieve the location of the memory that was allocated.
 
 You specify a finalizer callback in your `napi_set_instance_data` call. The finalizer callback gets called when your native add-on is released from memory and is where you should release the memory associated with this context.
 
@@ -244,7 +244,7 @@ napi_value Init(napi_env env, napi_value exports) {
     *value = i;
     napi_add_env_cleanup_hook(env, CleanupHook, value);
   }
-  return nullptr;
+  return exports;
 }
 
 }  // anonymous namespace
@@ -256,8 +256,25 @@ NAPI_MODULE(NODE_GYP_MODULE_NAME, Init)
 
 ```cjs
 'use strict';
+
 // We load the native addon.
 const addon = require('bindings')('multiple_load');
 const assert = require('assert');
 const child_process = require('child_process');
+
+assert.ok(addon);
+
+if (process.argv[2] === 'child') {
+  const childAddon = require('bindings')('multiple_load');
+  assert.ok(childAddon);
+  process.exit(0);
+}
+
+const child = child_process.fork(__filename, ['child'], {
+  stdio: 'inherit'
+});
+
+child.on('exit', (code) => {
+  assert.strictEqual(code, 0);
+});
 ```

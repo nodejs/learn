@@ -4,9 +4,9 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # Object and Function References
 
-JavaScript implements a dynamic memory model. When objects are no longer being used, they are automatically deleted by the garbage collector running in the background. JavaScript maintains a reference count to objects in memory to determine whether an object is still in use or not. When the reference count goes to zero, the memory for the object becomes eligible for deletion by the garbage collector.
+JavaScript implements a dynamic memory model. When objects are no longer reachable, they become eligible for reclamation by the garbage collector running in the background.
 
-There are situations when you need to insure that objects created by your Node-API code remain allocated. In this case you need to explicitly create a reference to it. This is the purpose of the `ObjectReference` and `ObjectFunction` classes.
+There are situations when you need to ensure that objects created by your Node-API code remain allocated. In this case you need to explicitly create a reference to them. This is the purpose of the `ObjectReference` and `FunctionReference` classes.
 
 ## Persistent Reference
 
@@ -14,13 +14,13 @@ Object and function references can be instantiated as either `Weak` or `Persiste
 
 A `Persistent` reference initializes the internal reference count to one which prevents reclamation of the object's memory by the garbage collector. The referenced object will remain in memory for the life of the `Persistent` reference.
 
-Using a `Persistent` reference makes sense in the case where the duration of the reference is known ahead of time. The internal reference count is decremented when the `Persistent` reference is deleted. This will make the referenced object eligible for deletion of the internal reference count goes to zero.
+Using a `Persistent` reference makes sense in the case where the duration of the reference is known ahead of time. The internal reference count is decremented when the `Persistent` reference is deleted. This will make the referenced object eligible for deletion if the internal reference count goes to zero.
 
 The most common case for using a `Persistent` reference is when you create a JavaScript class in your Node-API code and you need to insure its constructor remains allocated by the JavaScript runtime engine.
 
 ## Weak Reference
 
-For more complex implementations where multiple AsyncWorkers rely of the referenced object, it may make better sense to use a `Weak` reference which initializes the internal reference count to zero. The reference count can then be maintained using the `Reference` `Ref` and `Unref` methods.
+For more complex implementations where multiple AsyncWorkers rely on the referenced object, it may make better sense to use a `Weak` reference which initializes the internal reference count to zero. The reference count can then be maintained using the `Reference` `Ref` and `Unref` methods.
 
 The most common use case for a `Weak` reference is when your Node-API code needs to monitor when a JavaScript object you've created in your Node-API code is released by the garbage collector.
 

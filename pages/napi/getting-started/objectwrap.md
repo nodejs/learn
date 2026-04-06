@@ -36,7 +36,7 @@ npm test
 
 ## binding.gyp
 
-The project's [**binding.gyp**](https://github.com/nodejs/node-addon-examples/blob/main/src/2-js-to-native-conversion/object-wrap-demo/node-addon-api/binding.gyp) follows the standard format (see [Anatomy of a Node-API project](/learn/napi/getting-started/project-structure.md#bindinggypjs) for a full explanation of the `binding.gyp` format and how `node-gyp` uses it).
+The project's [**binding.gyp**](https://github.com/nodejs/node-addon-examples/blob/main/src/2-js-to-native-conversion/object-wrap-demo/node-addon-api/binding.gyp) follows the standard format (see [Anatomy of a Node-API project](/learn/napi/getting-started/project-structure.md#bindinggyp) for a full explanation of the `binding.gyp` format and how `node-gyp` uses it).
 
 ## src/object_wrap_demo.h and src/object_wrap_demo.cc
 

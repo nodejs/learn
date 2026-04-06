@@ -73,7 +73,7 @@ The conversion tool cannot anticipate every coding situation. So there will typi
 
 ### Cannot find module 'nan'
 
-This error, and its counterpart where `napi.h` cannot be found, is due to code missing in the `bind.gyp` file. For this project, you'll see this code in the binding.gyp:
+This error, and its counterpart where `napi.h` cannot be found, is due to code missing in the `binding.gyp` file. For this project, you'll see this code in the binding.gyp:
 
 ```json
 'include_dirs' : [ '<!(node -e "require(\'nan\')")' ]

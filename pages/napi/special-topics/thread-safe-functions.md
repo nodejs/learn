@@ -36,7 +36,7 @@ Threads may call into JavaScript via [`[Non]BlockingCall`](https://github.com/no
 
 ## Thread Management
 
-Multiple threads can utilize the thread-safe function simultaneously. The thread-safe function manages its lifecycle through counting the number of threads actively utilizing it. This number starts at the initial thread count parameter in `New()`, increased via `Acquire()`, and decreased via `Released()`. Once the number of active threads reaches zero, the thread-safe function is destroyed, running the finalizer callback on the main thread if provided.
+Multiple threads can utilize the thread-safe function simultaneously. The thread-safe function manages its lifecycle through counting the number of threads actively utilizing it. This number starts at the initial thread count parameter in `New()`, increased via `Acquire()`, and decreased via `Release()`. Once the number of active threads reaches zero, the thread-safe function is destroyed, running the finalizer callback on the main thread if provided.
 
 Here are two general approaches to using thread-safe functions within applications:
 
@@ -79,7 +79,7 @@ true
 
 ### Q: My application isn't exiting correctly. It just hangs.
 
-By default, Node will wait until a thread-safe function is finalized before cleaning up and exiting. See [Thread Management](#Thread-Management). This behavior can be changed via a call to `Unref()`, permitting Node to clean up without waiting for the thread count to reach zero. A call to `Ref()` will will return the threadsafe function to the previous exit behavior, requiring it to be `Release()`ed and/or `Abort()`ed by all threads utilizing it.
+By default, Node will wait until a thread-safe function is finalized before cleaning up and exiting. See [Thread Management](#Thread-Management). This behavior can be changed via a call to `Unref()`, permitting Node to clean up without waiting for the thread count to reach zero. A call to `Ref()` will return the threadsafe function to the previous exit behavior, requiring it to be `Release()`ed and/or `Abort()`ed by all threads utilizing it.
 
 ### Q: If a thread receives `napi_closing` from a call to `[Non]BlockingCall()`, does it still need to call `Release()`?
 

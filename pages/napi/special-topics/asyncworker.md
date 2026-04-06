@@ -4,7 +4,7 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # AsyncWorker
 
-You may have a project in which you have a piece of long-running C/C++ code that you want run in the background instead of on Node's main event loop. Node-API's [`AsyncWorker`](https://github.com/nodejs/node-addon-api/blob/main/doc/async_worker.md) class is designed specifically for this case.
+You may have a project in which you have a piece of long-running C/C++ code that you want to run in the background instead of on Node's main event loop. Node-API's [`AsyncWorker`](https://github.com/nodejs/node-addon-api/blob/main/doc/async_worker.md) class is designed specifically for this case.
 
 As a programmer, your job is essentially to subclass `AsyncWorker` and to implement the `Execute` method. You'll also probably implement a wrapper function to make using your `AsyncWorker` easier.
 

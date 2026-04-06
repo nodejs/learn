@@ -47,7 +47,7 @@ Since your native module needs to be compiled using CMake.js on installation, th
 
 ```json
   "scripts": {
-    "install": "cmake-js compile",
+    "install": "cmake-js compile"
   }
 ```
 
