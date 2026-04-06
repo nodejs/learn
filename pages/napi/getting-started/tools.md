@@ -105,7 +105,7 @@ git --version
 
 To confirm the MSVC compiler is available, open a **Developer Command Prompt** (installed with Visual Studio Build Tools) and run:
 
-```cmd
+```bash
 cl
 ```
 
