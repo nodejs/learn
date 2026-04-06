@@ -1,0 +1,386 @@
+{
+  "navigation": [
+    {
+      "link": "/learn",
+      "text": "Learn"
+    },
+    {
+      "link": "/about",
+      "text": "About"
+    },
+    {
+      "link": "/download",
+      "text": "Download"
+    },
+    {
+      "link": "/blog",
+      "text": "Blog"
+    },
+    {
+      "link": "/docs/latest/api/",
+      "text": "Docs"
+    },
+    {
+      "link": "https://github.com/nodejs/node/blob/main/CONTRIBUTING.md",
+      "text": "Contibute",
+      "target": "_blank"
+    },
+    {
+      "link": "https://training.linuxfoundation.org/openjs/",
+      "text": "Courses",
+      "target": "_blank"
+    }
+  ],
+  "footer": {
+    "links": [
+      {
+        "link": "https://openjsf.org/",
+        "text": "OpenJS Foundation"
+      },
+      {
+        "link": "https://terms-of-use.openjsf.org/",
+        "text": "Terms of Use"
+      },
+      {
+        "link": "https://privacy-policy.openjsf.org/",
+        "text": "Privacy Policy"
+      },
+      {
+        "link": "https://bylaws.openjsf.org/",
+        "text": "Bylaws"
+      },
+      {
+        "link": "https://github.com/openjs-foundation/cross-project-council/blob/main/CODE_OF_CONDUCT.md",
+        "text": "Code of Conduct"
+      },
+      {
+        "link": "https://trademark-policy.openjsf.org/",
+        "text": "Trademark Policy"
+      },
+      {
+        "link": "https://trademark-list.openjsf.org/",
+        "text": "Trademark List"
+      },
+      {
+        "link": "https://www.linuxfoundation.org/cookies/",
+        "text": "Cookie Policy"
+      },
+      {
+        "link": "https://github.com/nodejs/node/security/policy",
+        "text": "Security Policy"
+      }
+    ],
+    "social": [
+      {
+        "icon": "github",
+        "link": "https://github.com/nodejs/node",
+        "alt": "GitHub"
+      },
+      {
+        "icon": "discord",
+        "link": "https://discord.gg/nodejs",
+        "alt": "Discord"
+      },
+      {
+        "icon": "mastodon",
+        "link": "https://social.lfx.dev/@nodejs",
+        "alt": "Mastodon"
+      },
+      {
+        "icon": "bluesky",
+        "link": "https://bsky.app/profile/nodejs.org",
+        "alt": "Bluesky"
+      },
+      {
+        "icon": "twitter",
+        "link": "https://twitter.com/nodejs",
+        "alt": "Twitter"
+      },
+      {
+        "icon": "slack",
+        "link": "https://slack-invite.openjsf.org/",
+        "alt": "Slack"
+      },
+      {
+        "icon": "linkedin",
+        "link": "https://www.linkedin.com/company/node-js",
+        "alt": "LinkedIn"
+      }
+    ]
+  },
+  "sidebar": [
+    {
+      "groupName": "Getting Started",
+      "items": [
+        {
+          "link": "/learn/getting-started/introduction-to-nodejs",
+          "label": "Introduction to Node.js"
+        },
+        {
+          "link": "/learn/getting-started/how-much-javascript-do-you-need-to-know-to-use-nodejs",
+          "label": "How much JavaScript do you need to know to use Node.js?"
+        },
+        {
+          "link": "/learn/getting-started/differences-between-nodejs-and-the-browser",
+          "label": "Differences between Node.js and the Browser"
+        },
+        {
+          "link": "/learn/getting-started/the-v8-javascript-engine",
+          "label": "The V8 JavaScript Engine"
+        },
+        {
+          "link": "/learn/getting-started/an-introduction-to-the-npm-package-manager",
+          "label": "An introduction to the npm package manager"
+        },
+        {
+          "link": "/learn/getting-started/ecmascript-2015-es6-and-beyond",
+          "label": "ECMAScript 2015 (ES6) and beyond"
+        },
+        {
+          "link": "/learn/getting-started/debugging",
+          "label": "Debugging Node.js"
+        },
+        {
+          "link": "/learn/getting-started/fetch",
+          "label": "Fetching data with Node.js"
+        },
+        {
+          "link": "/learn/getting-started/websocket",
+          "label": "WebSocket client with Node.js"
+        },
+        {
+          "link": "/learn/getting-started/nodejs-the-difference-between-development-and-production",
+          "label": "Node.js, the difference between development and production"
+        },
+        {
+          "link": "/learn/getting-started/profiling",
+          "label": "Profiling Node.js Applications"
+        },
+        {
+          "link": "/learn/getting-started/nodejs-with-webassembly",
+          "label": "Node.js with WebAssembly"
+        },
+        {
+          "link": "/learn/getting-started/security-best-practices",
+          "label": "Security Best Practices"
+        },
+        {
+          "link": "/learn/getting-started/userland-migrations",
+          "label": "Introduction to Userland Migrations"
+        }
+      ]
+    },
+    {
+      "groupName": "Command Line",
+      "items": [
+        {
+          "link": "/learn/command-line/run-nodejs-scripts-from-the-command-line",
+          "label": "Run Node.js scripts from the command line"
+        },
+        {
+          "link": "/learn/command-line/how-to-use-the-nodejs-repl",
+          "label": "How to use the Node.js REPL"
+        },
+        {
+          "link": "/learn/command-line/output-to-the-command-line-using-nodejs",
+          "label": "Output to the command line using Node.js"
+        },
+        {
+          "link": "/learn/command-line/accept-input-from-the-command-line-in-nodejs",
+          "label": "Accept input from the command line in Node.js"
+        },
+        {
+          "link": "/learn/command-line/how-to-read-environment-variables-from-nodejs",
+          "label": "How to read environment variables from Node.js"
+        }
+      ]
+    },
+    {
+      "groupName": "HTTP",
+      "items": [
+        {
+          "link": "/learn/http/anatomy-of-an-http-transaction",
+          "label": "Anatomy of an HTTP Transaction"
+        },
+        {
+          "link": "/learn/http/enterprise-network-configuration",
+          "label": "Enterprise Network Configuration"
+        }
+      ]
+    },
+    {
+      "groupName": "Manipulating Files",
+      "items": [
+        {
+          "link": "/learn/manipulating-files/nodejs-file-stats",
+          "label": "Node.js file stats"
+        },
+        {
+          "link": "/learn/manipulating-files/nodejs-file-paths",
+          "label": "Node.js File Paths"
+        },
+        {
+          "link": "/learn/manipulating-files/reading-files-with-nodejs",
+          "label": "Reading files with Node.js"
+        },
+        {
+          "link": "/learn/manipulating-files/writing-files-with-nodejs",
+          "label": "Writing files with Node.js"
+        },
+        {
+          "link": "/learn/manipulating-files/working-with-file-descriptors-in-nodejs",
+          "label": "Working with file descriptors in Node.js"
+        },
+        {
+          "link": "/learn/manipulating-files/working-with-folders-in-nodejs",
+          "label": "Working with folders in Node.js"
+        },
+        {
+          "link": "/learn/manipulating-files/working-with-different-filesystems",
+          "label": "How to work with Different Filesystems"
+        }
+      ]
+    },
+    {
+      "groupName": "Asynchronous Work",
+      "items": [
+        {
+          "link": "/learn/asynchronous-work/javascript-asynchronous-programming-and-callbacks",
+          "label": "JavaScript Asynchronous Programming and Callbacks"
+        },
+        {
+          "link": "/learn/asynchronous-work/asynchronous-flow-control",
+          "label": "Asynchronous flow control"
+        },
+        {
+          "link": "/learn/asynchronous-work/discover-promises-in-nodejs",
+          "label": "Discover Promises in Node.js"
+        },
+        {
+          "link": "/learn/asynchronous-work/discover-javascript-timers",
+          "label": "Discover JavaScript Timers"
+        },
+        {
+          "link": "/learn/asynchronous-work/overview-of-blocking-vs-non-blocking",
+          "label": "Overview of Blocking vs Non-Blocking"
+        },
+        {
+          "link": "/learn/asynchronous-work/event-loop-timers-and-nexttick",
+          "label": "The Node.js Event Loop"
+        },
+        {
+          "link": "/learn/asynchronous-work/the-nodejs-event-emitter",
+          "label": "The Node.js Event Emitter"
+        },
+        {
+          "link": "/learn/asynchronous-work/understanding-processnexttick",
+          "label": "Understanding process.nextTick()"
+        },
+        {
+          "link": "/learn/asynchronous-work/understanding-setimmediate",
+          "label": "Understanding setImmediate()"
+        },
+        {
+          "link": "/learn/asynchronous-work/dont-block-the-event-loop",
+          "label": "Don't Block the Event Loop"
+        }
+      ]
+    },
+    {
+      "groupName": "TypeScript",
+      "items": [
+        {
+          "link": "/learn/typescript/introduction",
+          "label": "Introduction to TypeScript"
+        },
+        {
+          "link": "/learn/typescript/run-natively",
+          "label": "Running TypeScript Natively"
+        },
+        {
+          "link": "/learn/typescript/transpile",
+          "label": "Running TypeScript code using transpilation"
+        },
+        {
+          "link": "/learn/typescript/run",
+          "label": "Running TypeScript with a runner"
+        },
+        {
+          "link": "/learn/typescript/publishing-a-ts-package",
+          "label": "Publishing a TypeScript package"
+        }
+      ]
+    },
+    {
+      "groupName": "Modules",
+      "items": [
+        {
+          "link": "/learn/modules/how-to-use-streams",
+          "label": "How to use streams"
+        },
+        {
+          "link": "/learn/modules/backpressuring-in-streams",
+          "label": "Backpressuring in Streams"
+        },
+        {
+          "link": "/learn/modules/publishing-a-package",
+          "label": "Publishing a package"
+        },
+        {
+          "link": "/learn/modules/publishing-node-api-modules",
+          "label": "How to publish a Node-API package"
+        },
+        {
+          "link": "/learn/modules/abi-stability",
+          "label": "ABI Stability"
+        }
+      ]
+    },
+    {
+      "groupName": "Diagnostics",
+      "items": [
+        {
+          "link": "/learn/diagnostics/user-journey",
+          "label": "User Journey"
+        },
+        {
+          "link": "/learn/diagnostics/memory",
+          "label": "Memory"
+        },
+        {
+          "link": "/learn/diagnostics/live-debugging",
+          "label": "Live Debugging"
+        },
+        {
+          "link": "/learn/diagnostics/poor-performance",
+          "label": "Poor Performance"
+        },
+        {
+          "link": "/learn/diagnostics/flame-graphs",
+          "label": "Flame Graphs"
+        }
+      ]
+    },
+    {
+      "groupName": "Test Runner",
+      "items": [
+        {
+          "link": "/learn/test-runner/introduction",
+          "label": "Discovering Node.js's test runner"
+        },
+        {
+          "link": "/learn/test-runner/using-test-runner",
+          "label": "Using Node.js's test runner"
+        },
+        {
+          "link": "/learn/test-runner/mocking",
+          "label": "Mocking in tests"
+        },
+        {
+          "link": "/learn/test-runner/collecting-code-coverage",
+          "label": "Collecting code coverage in Node.js"
+        }
+      ]
+    }
+  ]
+}

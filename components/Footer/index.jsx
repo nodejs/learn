@@ -1,7 +1,7 @@
 import Footer from '@node-core/ui-components/Containers/Footer';
 import NavItem from '@node-core/ui-components/Containers/NavBar/NavItem';
 
-import { socialLinks, footerLinks } from './footer.json';
+import { footer } from '../../site.json' with { type: 'json' };
 
 // The Node.js Project is legally obligated to include the following text.
 // It should not be modified unless explicitly requested by OpenJS staff.
@@ -24,7 +24,7 @@ const LegalSlot = (
     </p>
 
     <p>
-      {footerLinks.map(({ link, text }) => (
+      {footer.links.map(({ link, text }) => (
         <NavItem key={link} type="footer" href={link}>
           {text}
         </NavItem>
@@ -39,7 +39,7 @@ const LegalSlot = (
 export default ({ metadata }) => (
   <Footer
     pathname={metadata.path}
-    navigation={{ socialLinks }}
+    navigation={{ socialLinks: footer.social }}
     slots={{ legal: LegalSlot }}
   />
 );
