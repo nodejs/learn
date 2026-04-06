@@ -271,10 +271,10 @@ if (process.argv[2] === 'child') {
 }
 
 const child = child_process.fork(__filename, ['child'], {
-  stdio: 'inherit'
+  stdio: 'inherit',
 });
 
-child.on('exit', (code) => {
+child.on('exit', code => {
   assert.strictEqual(code, 0);
 });
 ```
