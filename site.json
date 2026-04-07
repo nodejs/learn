@@ -42,36 +42,36 @@
         "text": "AI Coding Assistants Policy"
       },
       {
-        "link": "https://terms-of-use.openjsf.org/",
-        "text": "Terms of Use"
-      },
-      {
-        "link": "https://privacy-policy.openjsf.org/",
-        "text": "Privacy Policy"
-      },
-      {
         "link": "https://bylaws.openjsf.org/",
         "text": "Bylaws"
       },
       {
-        "link": "https://github.com/openjs-foundation/cross-project-council/blob/main/CODE_OF_CONDUCT.md",
+        "link": "https://code-of-conduct.openjsf.org/",
         "text": "Code of Conduct"
-      },
-      {
-        "link": "https://trademark-policy.openjsf.org/",
-        "text": "Trademark Policy"
-      },
-      {
-        "link": "https://trademark-list.openjsf.org/",
-        "text": "Trademark List"
       },
       {
         "link": "https://www.linuxfoundation.org/cookies/",
         "text": "Cookie Policy"
       },
       {
+        "link": "https://privacy-policy.openjsf.org/",
+        "text": "Privacy Policy"
+      },
+      {
         "link": "https://github.com/nodejs/node/security/policy",
         "text": "Security Policy"
+      },
+      {
+        "link": "https://terms-of-use.openjsf.org/",
+        "text": "Terms of Use"
+      },
+      {
+        "link": "https://trademark-list.openjsf.org/",
+        "text": "Trademark List"
+      },
+      {
+        "link": "https://trademark-policy.openjsf.org/",
+        "text": "Trademark Policy"
       }
     ],
     "social": [
