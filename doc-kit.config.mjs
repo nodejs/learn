@@ -9,12 +9,12 @@ export default {
   global: {
     output: 'out/learn',
     input: ['pages/**/*.md'],
+    baseURL: `https://${origin}/learn`,
   },
   web: {
     // Important Configuration
     project: 'Node.js',
     title: '{project} Learn',
-    baseURL: `https://${origin}/learn`,
     pageURL: '{baseURL}{path}.html',
     editURL: 'https://github.com/nodejs/learn/edit/main/pages{path}.md',
     useAbsoluteURLs: true,
@@ -25,5 +25,9 @@ export default {
       ...web.defaultConfiguration.imports,
       '#theme/Layout': join(import.meta.dirname, 'components/Layout/index.jsx'),
     },
+  },
+  sitemap: {
+    indexURL: '{baseURL}',
+    pageURL: '{baseURL}{path}',
   },
 };

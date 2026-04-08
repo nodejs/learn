@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "doc-kit generate -t web -t orama-db --config-file doc-kit.config.mjs",
+    "build": "doc-kit generate -t web -t orama-db -t sitemap --config-file doc-kit.config.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
