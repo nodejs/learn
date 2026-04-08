@@ -459,8 +459,8 @@ You can also collaborate with other projects and security experts through the [O
 [Slowloris]: https://en.wikipedia.org/wiki/Slowloris_(computer_security)
 [`http.Server`]: https://nodejs.org/api/http.html#class-httpserver
 [http docs]: https://nodejs.org/api/http.html
-[--inspect switch]: /diagnostics/debugging
-[same-origin policy]: /diagnostics/debugging
+[--inspect switch]: /learn/getting-started/debugging
+[same-origin policy]: /learn/getting-started/debugging
 [DNS Rebinding wiki]: https://en.wikipedia.org/wiki/DNS_rebinding
 [files property]: https://docs.npmjs.com/cli/configuring-npm/package-json#files
 [unpublish the package]: https://docs.npmjs.com/unpublishing-packages-from-the-registry

@@ -9,4 +9,4 @@ of the application as it handles a business-critical workload.
 
 ## How To
 
-[Debugging Node.js](/learn/diagnostics/debugging)
+[Debugging Node.js](/learn/getting-started/debugging)
