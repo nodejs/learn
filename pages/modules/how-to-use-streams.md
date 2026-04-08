@@ -829,7 +829,7 @@ This work is derived from content published by [Matteo Collina][] in [Platformat
 [`WritableStream`]: https://nodejs.org/api/webstreams.html#class-writablestream
 [`TransformStream`]: https://nodejs.org/api/webstreams.html#class-transformstream
 [`WHATWG Streams Standard`]: https://streams.spec.whatwg.org/
-[`backpressure guide`]: /asynchronous-work/backpressuring-in-streams
+[`backpressure guide`]: /learn/modules/backpressuring-in-streams
 [`fs.readStream`]: https://nodejs.org/api/fs.html#class-fsreadstream
 [`http.IncomingMessage`]: https://nodejs.org/api/http.html#class-httpincomingmessage
 [`process.stdin`]: https://nodejs.org/api/process.html#processstdin
