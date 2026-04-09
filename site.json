@@ -385,6 +385,27 @@
           "label": "Collecting code coverage in Node.js"
         }
       ]
+    },
+    {
+      "groupName": "Node-API",
+      "items": [
+        {
+          "link": "/learn/napi",
+          "label": "What is Node-API?"
+        },
+        {
+          "link": "/learn/napi/getting-started",
+          "label": "Getting Started"
+        },
+        {
+          "link": "/learn/napi/build-tools",
+          "label": "Build Tools"
+        },
+        {
+          "link": "/learn/napi/special-topics",
+          "label": "Special Topics"
+        }
+      ]
     }
   ]
 }
