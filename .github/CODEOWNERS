@@ -1,0 +1,9 @@
+# Learning content
+* @nodejs/nodejs-website
+
+# Repository infrastructure
+.github/ @nodejs/web-infra
+doc-kit.config.mjs @nodejs/web-infra
+package.json @nodejs/nodejs-website @nodejs/web-infra
+package-lock.json @nodejs/web-infra
+vercel.json @nodejs/web-infra
