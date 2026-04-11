@@ -12,7 +12,7 @@ As a beginner, it's hard to get to a point where you are confident enough in you
 - [Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators)
 - [Data Types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 - [Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
-- [Variables](https://developer.mozilla.org/en-US/docs/JavaScript/First_steps/Variables#what_is_a_variable)
+- [Variables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations)
 - [Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
 - [`this` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 - [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
