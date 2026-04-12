@@ -69,7 +69,6 @@ The [`--run`](https://nodejs.org/docs/latest-v22.x/api/cli.html#--run) flag allo
   "type": "module",
   "scripts": {
     "start": "node app.js",
-    "dev": "node --run start -- --watch",
     "test": "node --test"
   }
 }
@@ -83,13 +82,15 @@ node --run test
 
 ### Passing arguments to the command
 
-Let's explain the `dev` key in the `scripts` object of the `package.json` file.
-
-The syntax `-- --another-argument` is used to pass arguments to the command. In this case, the `--watch` argument is passed to the `dev` script.
+You can use the syntax `-- --another-argument` to pass arguments to the underlying script. For example, if you want to pass a `--port` argument to the `start` script:
 
 ```bash
-node --run dev
+node --run start -- --port 8080
 ```
+
+This will run the `start` script and append `--port 8080` to the command execution, making it equivalent to running `node app.js --port 8080`.
+
+> Note: Arguments passed after `--` are forwarded to the script and are not interpreted as Node.js CLI flags. For example, `--watch` would not behave like `node --watch app.js` when passed this way.
 
 ### Environment variables
 
