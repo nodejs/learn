@@ -30,7 +30,7 @@ With those concepts in mind, you are well on your road to become a proficient Ja
 
 The following concepts are also key to understand asynchronous programming, which is one of the fundamental parts of Node.js:
 
-- [Asynchronous programming and callbacks](https://developer.mozilla.org/en-US/docs/JavaScript/Asynchronous/Introducing)
+- [Asynchronous programming and callbacks](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Async_JS/Introducing)
 - [Timers](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
 - [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
 - [Async and Await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
