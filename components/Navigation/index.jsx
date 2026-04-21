@@ -7,18 +7,24 @@ import SearchBox from '@node-core/doc-kit/src/generators/web/ui/components/Searc
 import { useTheme } from '@node-core/doc-kit/src/generators/web/ui/hooks/useTheme.mjs';
 import { navigation } from '../../site.json' with { type: 'json' };
 import Logo from '#theme/Logo';
+import useLocalizedLink from '../../hooks/useLocalizedLink';
 
 /**
  * NavBar component that displays the headings, search, etc.
  */
 export default ({ metadata }) => {
   const [themePreference, setThemePreference] = useTheme();
+  const getLocalizedLink = useLocalizedLink();
+  const navItems = navigation.map((item) => ({
+    ...item,
+    link: getLocalizedLink(item.link),
+  }));
 
   return (
     <NavBar
       Logo={Logo}
       sidebarItemTogglerAriaLabel="Toggle navigation menu"
-      navItems={navigation}
+      navItems={navItems}
     >
       <SearchBox pathname={metadata.path} />
       <ThemeToggle
