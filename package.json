@@ -23,7 +23,8 @@
   "dependencies": {
     "@node-core/ui-components": "^1.6.3",
     "@vercel/analytics": "^2.0.1",
-    "@vercel/speed-insights": "^2.0.0"
+    "@vercel/speed-insights": "^2.0.0",
+    "react-intl": "^10.1.2"
   },
   "engines": {
     "node": "24.x"
