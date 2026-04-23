@@ -8,7 +8,7 @@ import { useTheme } from '@node-core/doc-kit/src/generators/web/ui/hooks/useThem
 import { useEffect, useState } from 'preact/hooks';
 import { useIntl } from 'react-intl';
 
-import localizeLink from '../../util/link';
+import { localizeLink } from '../../util/link';
 import { navigation } from '../../site.json' with { type: 'json' };
 
 import Logo from '#theme/Logo';

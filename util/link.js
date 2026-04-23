@@ -7,7 +7,7 @@ import { defaultLocale } from '../site.json' with { type: 'json' };
  * @param {string|null} locale - The locale to apply to the link.
  * @returns {string} - The localized link.
  */
-const localizeLink = (link, locale) => {
+export const localizeLink = (link, locale) => {
   if (
     typeof document === 'undefined' ||
     !link.startsWith('/') ||
@@ -24,5 +24,3 @@ const localizeLink = (link, locale) => {
 
   return localizedLink;
 };
-
-export default { localizeLink };
