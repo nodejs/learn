@@ -10,8 +10,6 @@ One of the limitations of native addons is that they must be compiled for each t
 
 > Note that Node-API support was added to node-pre-gyp in version 0.8.0.
 
-> [prebuild](/learn/napi/build-tools/prebuild.md) is an alternative tool that addresses the same problem.
-
 This page describes the changes required to a Node-API addon to support node-pre-gyp.
 
 ## Amazon S3
@@ -54,14 +52,14 @@ For CI environments, prefer IAM roles or short-lived credentials rather than lon
 
 ### The `dependencies` and `devDependencies` properties
 
-The package is now published under the `@mapbox` scope. Use `aws-sdk` as a dev dependency for the upload step.
+The package is now published under the `@mapbox` scope. Use `@aws-sdk/client-s3` as a dev dependency for the upload step.
 
 ```json
 "dependencies": {
   "@mapbox/node-pre-gyp": "^1.0.0"
 },
 "devDependencies": {
-  "aws-sdk": "^2.0.0"
+  "@aws-sdk/client-s3": "^3.0.0"
 }
 ```
 

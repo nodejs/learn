@@ -6,7 +6,7 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 [node-gyp](https://github.com/nodejs/node-gyp) is the standard build tool for native Node.js addons and is used by the vast majority of packages in the npm ecosystem. It is actively maintained by the Node.js team. Most of the examples on this site use node-gyp to build binaries.
 
-node-gyp is based on Google's [GYP](https://gyp.gsrc.io/) build tool. GYP provides a single cross-platform configuration format for C/C++ builds. Although Google archived the upstream GYP repository, node-gyp continues to receive active development and maintenance independently.
+node-gyp is based on Google's [GYP](https://gyp.gsrc.io/) build tool. GYP provides a single cross-platform configuration format for C/C++ builds. Although Google archived the upstream GYP repository, node-gyp continues to receive active development and maintenance through [gyp-next](https://github.com/nodejs/gyp-next).
 
 > node-gyp requires **Python 3.6 or later**. Python 2 is not supported. The full list of requirements for each platform can be found in the [node-gyp installation docs](https://github.com/nodejs/node-gyp#installation).
 

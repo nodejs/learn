@@ -19,4 +19,3 @@ There are two broad strategies for shipping a native addon:
 - [node-gyp](/learn/napi/build-tools/node-gyp.md) - the default build tool bundled with npm; uses Google's GYP format and is nearly universally supported in the Node ecosystem
 - [CMake.js](/learn/napi/build-tools/cmake-js.md) - a CMake-based alternative, well-suited for projects that already use CMake
 - [node-pre-gyp](/learn/napi/build-tools/node-pre-gyp.md) - a layer on top of node-gyp for distributing pre-built binaries via Amazon S3
-- [prebuild](/learn/napi/build-tools/prebuild.md) - an alternative pre-build tool that publishes binaries as GitHub Releases
