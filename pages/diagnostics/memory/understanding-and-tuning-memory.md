@@ -124,7 +124,7 @@ For example, in a real-time application like a stock trading platform, you may w
 node --gc-interval=100 app.js
 ```
 
-This setting forces V8 to attempt garbage collection every 100 ms. You may need to adjust this interval for specific use cases, but be cautious: setting the interval too low can cause performance degradation due to excessive garbage collection cycles.
+This setting forces V8 to attempt garbage collection every 100 allocations. You may need to adjust this interval for specific use cases, but be cautious: setting the interval too low can cause performance degradation due to excessive garbage collection cycles.
 
 ### `--expose-gc`
 
