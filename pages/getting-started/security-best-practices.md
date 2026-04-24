@@ -270,6 +270,19 @@ Possible attack vectors:
   in favor of _package.json_).
 - Carefully check the _package.json_ file for errors/typos in the names of the
   dependencies.
+- Set a dependency cooldown with [`--min-release-age`][min-release-age]
+  (npm v11.10.0+) to avoid installing recently published packages.
+  The value is in days (e.g., `1` means packages must be at least one day
+  old). Most compromised packages are detected and removed within hours.
+  A cooldown of even one day eliminates exposure to the majority of
+  short-lived supply chain attacks:
+  ```ini
+  min-release-age=1
+  ```
+  To apply security fixes without waiting for the cooldown, override it
+  per-command: `npm install package-name --min-release-age=0`. Use
+  `npm audit` to identify packages with known vulnerabilities that need
+  immediate updates.
 
 ### Memory Access Violation (CWE-284)
 
@@ -485,3 +498,4 @@ You can also collaborate with other projects and security experts through the [O
 [OpenSSF Scorecard]: https://securityscorecards.dev/
 [OpenSSF Best Practices Badge Program]: https://bestpractices.coreinfrastructure.org/en
 [OpenJS Security Collaboration Space]: https://github.com/openjs-foundation/security-collab-space
+[min-release-age]: https://docs.npmjs.com/cli/v11/using-npm/config#min-release-age
