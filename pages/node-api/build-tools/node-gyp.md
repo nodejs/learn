@@ -16,7 +16,7 @@ node-gyp is included with npm; when npm sees `"gypfile": true` in `package.json`
 npm install -g node-gyp
 ```
 
-For developers who find node-gyp too constraining, [CMake.js](/learn/napi/build-tools/cmake-js.md) is a good alternative.
+For developers who find node-gyp too constraining, [CMake.js](/learn/node-api/build-tools/cmake-js.md) is a good alternative.
 
 ### Pros
 

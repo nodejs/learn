@@ -386,19 +386,19 @@
       "groupName": "Node-API",
       "items": [
         {
-          "link": "/learn/napi",
+          "link": "/learn/node-api",
           "label": "What is Node-API?"
         },
         {
-          "link": "/learn/napi/getting-started",
+          "link": "/learn/node-api/getting-started",
           "label": "Getting Started"
         },
         {
-          "link": "/learn/napi/build-tools",
+          "link": "/learn/node-api/build-tools",
           "label": "Build Tools"
         },
         {
-          "link": "/learn/napi/special-topics",
+          "link": "/learn/node-api/special-topics",
           "label": "Special Topics"
         }
       ]

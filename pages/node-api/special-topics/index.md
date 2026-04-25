@@ -8,10 +8,10 @@ This section covers advanced Node-API patterns that you will encounter once your
 
 ## Topics covered
 
-- [Object and function references](/learn/napi/special-topics/object-function-refs.md) - using `ObjectReference` and `FunctionReference` to keep JavaScript objects alive across call boundaries so the garbage collector does not reclaim them prematurely
-- [AsyncWorker](/learn/napi/special-topics/asyncworker.md) - running long-running C/C++ operations on a background thread using `node-addon-api`'s `AsyncWorker` class, keeping Node's event loop unblocked
-- [Thread-safe functions](/learn/napi/special-topics/thread-safe-functions.md) - calling back into JavaScript from native threads that are not the main Node.js thread, using the thread-safe function API
-- [Context awareness](/learn/napi/special-topics/context-awareness.md) - writing addons that load and unload correctly in the presence of [Worker Threads](https://nodejs.org/api/worker_threads.html), including instance data and cleanup hooks
+- [Object and function references](/learn/node-api/special-topics/object-function-refs.md) - using `ObjectReference` and `FunctionReference` to keep JavaScript objects alive across call boundaries so the garbage collector does not reclaim them prematurely
+- [AsyncWorker](/learn/node-api/special-topics/asyncworker.md) - running long-running C/C++ operations on a background thread using `node-addon-api`'s `AsyncWorker` class, keeping Node's event loop unblocked
+- [Thread-safe functions](/learn/node-api/special-topics/thread-safe-functions.md) - calling back into JavaScript from native threads that are not the main Node.js thread, using the thread-safe function API
+- [Context awareness](/learn/node-api/special-topics/context-awareness.md) - writing addons that load and unload correctly in the presence of [Worker Threads](https://nodejs.org/api/worker_threads.html), including instance data and cleanup hooks
 
 ## When do these topics apply?
 

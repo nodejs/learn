@@ -4,7 +4,7 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # CMake.js
 
-[CMake.js](https://github.com/cmake-js/cmake-js) is good build tool alternative to [node-gyp](/learn/napi/build-tools/node-gyp.md). CMake.js is based on the [CMake](https://cmake.org) tool which must be installed.
+[CMake.js](https://github.com/cmake-js/cmake-js) is good build tool alternative to [node-gyp](/learn/node-api/build-tools/node-gyp.md). CMake.js is based on the [CMake](https://cmake.org) tool which must be installed.
 
 ### Pros
 
@@ -78,7 +78,7 @@ In addition to the entries required for any CMake build, additional entries are 
 Here are the lines required for all native modules built using CMake.js:
 
 ```cpp
-project(napi-cmake-build-example)
+project(node-api-cmake-build-example)
 include_directories(${CMAKE_JS_INC})
 file(GLOB SOURCE_FILES "hello.cc")
 add_library(${PROJECT_NAME} SHARED ${SOURCE_FILES} ${CMAKE_JS_SRC})

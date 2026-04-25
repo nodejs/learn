@@ -4,9 +4,9 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # Object Wrap
 
-This tutorial is an alternative to [Your First Project](/learn/napi/getting-started/your-first-project.md). Instead of exporting a plain function, it demonstrates how to expose a C++ object as a JavaScript object using `node-addon-api`'s `ObjectWrap` class.
+This tutorial is an alternative to [Your First Project](/learn/node-api/getting-started/your-first-project.md). Instead of exporting a plain function, it demonstrates how to expose a C++ object as a JavaScript object using `node-addon-api`'s `ObjectWrap` class.
 
-Before you start, make sure you've got all the necessary [prerequisites](/learn/napi/getting-started/prerequisites.md) and [tools](/learn/napi/getting-started/tools.md) installed, and read [Anatomy of a Node-API project](/learn/napi/getting-started/project-structure.md) to understand the common project layout and configuration files.
+Before you start, make sure you've got all the necessary [prerequisites](/learn/node-api/getting-started/prerequisites.md) and [tools](/learn/node-api/getting-started/tools.md) installed, and read [Anatomy of a Node-API project](/learn/node-api/getting-started/project-structure.md) to understand the common project layout and configuration files.
 
 ## Creating a project
 
@@ -36,7 +36,7 @@ npm test
 
 ## binding.gyp
 
-The project's [**binding.gyp**](https://github.com/nodejs/node-addon-examples/blob/main/src/2-js-to-native-conversion/object-wrap-demo/node-addon-api/binding.gyp) follows the standard format (see [Anatomy of a Node-API project](/learn/napi/getting-started/project-structure.md#bindinggyp) for a full explanation of the `binding.gyp` format and how `node-gyp` uses it).
+The project's [**binding.gyp**](https://github.com/nodejs/node-addon-examples/blob/main/src/2-js-to-native-conversion/object-wrap-demo/node-addon-api/binding.gyp) follows the standard format (see [Anatomy of a Node-API project](/learn/node-api/getting-started/project-structure.md#bindinggyp) for a full explanation of the `binding.gyp` format and how `node-gyp` uses it).
 
 ## src/object_wrap_demo.h and src/object_wrap_demo.cc
 

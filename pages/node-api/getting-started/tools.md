@@ -28,7 +28,7 @@ npm install -g npm@latest
 
 ## C/C++ compiler and Python
 
-In addition to Node and npm, you need a C/C++ compiler toolchain and Python (required by [node-gyp](/learn/napi/build-tools/node-gyp.md).
+In addition to Node and npm, you need a C/C++ compiler toolchain and Python (required by [node-gyp](/learn/node-api/build-tools/node-gyp.md).
 
 ### Windows
 

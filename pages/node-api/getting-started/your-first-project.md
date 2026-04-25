@@ -4,7 +4,7 @@ authors: gabrielschulhof, NickNaso, jschlight, mhdawson, KevinEady, avivkeller
 
 # Your First Project
 
-Before you start, make sure you've got all the necessary [prerequisites](/learn/napi/getting-started/prerequisites.md) and [tools](/learn/napi/getting-started/tools.md) installed, and read [Anatomy of a Node-API project](/learn/napi/getting-started/project-structure.md) to understand the common layout and configuration files shared by all `node-addon-api` projects.
+Before you start, make sure you've got all the necessary [prerequisites](/learn/node-api/getting-started/prerequisites.md) and [tools](/learn/node-api/getting-started/tools.md) installed, and read [Anatomy of a Node-API project](/learn/node-api/getting-started/project-structure.md) to understand the common layout and configuration files shared by all `node-addon-api` projects.
 
 This tutorial uses `node-addon-api` at the C++ wrapper level.
 

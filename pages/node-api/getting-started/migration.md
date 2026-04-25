@@ -10,7 +10,7 @@ This tutorial uses the conversion tool supplied with Node-API to give you a head
 
 To keep things somewhat constrained, this tutorial uses [node-microtime](https://github.com/wadey/node-microtime) which is a simple NAN-based native add-on. This add-on makes system calls to determine the current time to microsecond resolution if supported by the operating system.
 
-Before you start, make sure you've got all the necessary [prerequisites](/learn/napi/getting-started/prerequisites.md) and [tools](/learn/napi/getting-started/tools.md) installed.
+Before you start, make sure you've got all the necessary [prerequisites](/learn/node-api/getting-started/prerequisites.md) and [tools](/learn/node-api/getting-started/tools.md) installed.
 
 > Node-API is stable in all currently supported Node.js releases. Use an [Active LTS or Maintenance LTS release](https://nodejs.org/en/about/releases/). You can check the version of Node.js you are running with `node -v`.
 
