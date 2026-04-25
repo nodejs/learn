@@ -1,0 +1,41 @@
+* @nodejs/nodejs-website
+/.* @nodejs/web-infra
+
+/pages/asynchronous-work/ @nodejs/timers
+/pages/asynchronous-work/the-nodejs-event-emitter.md @nodejs/events
+
+/pages/command-line/how-to-use-the-nodejs-repl.md @nodejs/repl
+
+/pages/diagnostics/ @nodejs/diagnostics
+/pages/diagnostics/memory/ @nodejs/diagnostics @nodejs/v8
+/pages/diagnostics/live-debugging/ @nodejs/diagnostics
+/pages/diagnostics/live-debugging/using-inspector.md @nodejs/diagnostics @nodejs/inspector
+/pages/diagnostics/poor-performance/ @nodejs/diagnostics @nodejs/performance
+/pages/diagnostics/flame-graphs.md @nodejs/diagnostics @nodejs/performance
+
+/pages/getting-started/an-introduction-to-the-npm-package-manager.md @nodejs/npm
+/pages/getting-started/debugging.md @nodejs/diagnostics
+/pages/getting-started/profiling.md @nodejs/diagnostics @nodejs/performance
+/pages/getting-started/the-v8-javascript-engine.md @nodejs/v8
+/pages/getting-started/security-best-practices.md @nodejs/security-wg
+/pages/getting-started/userland-migrations.md @nodejs/userland-migrations
+/pages/getting-started/nodejs-with-webassembly.md @nodejs/wasi
+/pages/getting-started/fetch.md @nodejs/undici @nodejs/web-standards
+/pages/getting-started/websocket.md @nodejs/web-standards
+
+/pages/http/ @nodejs/http
+
+/pages/manipulating-files/ @nodejs/fs
+
+/pages/modules/ @nodejs/loaders
+/pages/modules/how-to-use-streams.md @nodejs/streams
+/pages/modules/backpressuring-in-streams.md @nodejs/streams
+/pages/modules/abi-stability.md @nodejs/node-api
+/pages/modules/publishing-node-api-modules.md @nodejs/node-api
+/pages/modules/publishing-a-package.md @nodejs/npm
+
+/pages/test-runner/ @nodejs/test_runner
+
+/pages/typescript/ @nodejs/typescript
+
+/pages/node-api/ @nodejs/node-api
