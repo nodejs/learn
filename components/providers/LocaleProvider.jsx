@@ -1,5 +1,5 @@
 import { createContext } from 'preact';
-import { useContext } from 'preact/hooks';
+import { useContext, useState, useEffect } from 'preact/hooks';
 
 import { defaultLocale } from '../../site.json' with { type: 'json' };
 
@@ -49,7 +49,11 @@ export const useLocale = () => useContext(LocaleContext);
  * @param {{ locale?: string, children: import('preact').ComponentChildren }} props
  */
 export default function LocaleProvider({ locale, children }) {
-  const detectedLocale = locale ?? detectLocaleFromCookies();
+  const [detectedLocale, setDetectedLocale] = useState(defaultLocale);
+
+  useEffect(() => {
+    setDetectedLocale(locale ?? detectLocaleFromCookies());
+  }, [locale]);
 
   const value = {
     locale: detectedLocale,

@@ -7,7 +7,7 @@ import NavBar from '../Navigation';
 import MetaBar from '../Metabar';
 import SideBar from '../Sidebar';
 import Footer from '../Footer';
-import LocaleProvider from '../../providers/LocaleProvider';
+import LocaleProvider from '../providers/LocaleProvider';
 
 /**
  * @typedef {Object} Props
