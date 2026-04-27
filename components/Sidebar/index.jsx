@@ -11,7 +11,7 @@ const PrefetchLink = props => <a {...props} rel="prefetch" />;
  */
 export default ({ metadata }) => (
   <SideBar
-    pathname={`/learn${metadata.path}`}
+    pathname={`/learn${metadata.path.replace('/index', '')}`}
     groups={sidebar}
     onSelect={redirect}
     as={PrefetchLink}
