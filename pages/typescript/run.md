@@ -24,7 +24,7 @@ npx ts-node example.ts
 
 ## Running TypeScript code with `tsx`
 
-[tsx](https://tsx.is/) is another TypeScript execution environment for Node.js. It allows you to run TypeScript code directly in Node.js without the need to compile it first. Note, however, that it does not type check your code. So we recommend to type check your code first with `tsc` and then run it with `tsx` before shipping it.
+[tsx](https://tsx.hirok.io/) is another TypeScript execution environment for Node.js. It allows you to run TypeScript code directly in Node.js without the need to compile it first. Note, however, that it does not type check your code. So we recommend to type check your code first with `tsc` and then run it with `tsx` before shipping it.
 
 To use `tsx`, you need to install it first:
 
