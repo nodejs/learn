@@ -85,7 +85,7 @@ All three of `fs.readFile()`, `fs.readFileSync()` and `fsPromises.readFile()` re
 
 This means that big files are going to have a major impact on your memory consumption and speed of execution of the program.
 
-In this case, a better option is to read the file content using streams.
+In this case, a better option is to read the file content using streams as it is more memory efficient.
 
 ```mjs
 import fs from 'fs';
