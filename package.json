@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@node-core/doc-kit": "1.3.3",
+    "@node-core/doc-kit": "1.3.5",
     "@node-core/remark-lint": "^1.3.0",
     "eslint": "^10.1.0",
     "eslint-plugin-mdx": "^3.7.0",
