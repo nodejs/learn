@@ -349,15 +349,57 @@
         },
         {
           "link": "/learn/diagnostics/memory",
-          "label": "Memory"
+          "label": "Memory",
+          "items": [
+            {
+              "link": "/learn/diagnostics/memory",
+              "label": "Overview"
+            },
+            {
+              "link": "/learn/diagnostics/memory/understanding-and-tuning-memory",
+              "label": "Understanding and Tuning Memory"
+            },
+            {
+              "link": "/learn/diagnostics/memory/using-heap-profiler",
+              "label": "Using Heap Profiler"
+            },
+            {
+              "link": "/learn/diagnostics/memory/using-heap-snapshot",
+              "label": "Using Heap Snapshot"
+            },
+            {
+              "link": "/learn/diagnostics/memory/using-gc-traces",
+              "label": "Tracing garbage collection"
+            }
+          ]
         },
         {
           "link": "/learn/diagnostics/live-debugging",
-          "label": "Live Debugging"
+          "label": "Live Debugging",
+          "items": [
+            {
+              "link": "/learn/diagnostics/live-debugging",
+              "label": "Overview"
+            },
+            {
+              "link": "/learn/diagnostics/live-debugging/using-inspector",
+              "label": "Using Inspector"
+            }
+          ]
         },
         {
           "link": "/learn/diagnostics/poor-performance",
-          "label": "Poor Performance"
+          "label": "Poor Performance",
+          "items": [
+            {
+              "link": "/learn/diagnostics/poor-performance",
+              "label": "Overview"
+            },
+            {
+              "link": "/learn/diagnostics/poor-performance/using-linux-perf",
+              "label": "Using Linux Perf"
+            }
+          ]
         },
         {
           "link": "/learn/diagnostics/flame-graphs",
@@ -395,15 +437,85 @@
         },
         {
           "link": "/learn/node-api/getting-started",
-          "label": "Getting Started"
+          "label": "Getting Started",
+          "items": [
+            {
+              "link": "/learn/node-api/getting-started",
+              "label": "Overview"
+            },
+            {
+              "link": "/learn/node-api/getting-started/prerequisites",
+              "label": "Pre-requisites"
+            },
+            {
+              "link": "/learn/node-api/getting-started/tools",
+              "label": "Tools"
+            },
+            {
+              "link": "/learn/node-api/getting-started/project-structure",
+              "label": "Anatomy of a Node-API project"
+            },
+            {
+              "link": "/learn/node-api/getting-started/your-first-project",
+              "label": "Your First Project"
+            },
+            {
+              "link": "/learn/node-api/getting-started/objectwrap",
+              "label": "Object Wrap"
+            },
+            {
+              "link": "/learn/node-api/getting-started/migration",
+              "label": "Migrating to Node-API"
+            }
+          ]
         },
         {
           "link": "/learn/node-api/build-tools",
-          "label": "Build Tools"
+          "label": "Build Tools",
+          "items": [
+            {
+              "link": "/learn/node-api/build-tools",
+              "label": "Overview"
+            },
+            {
+              "link": "/learn/node-api/build-tools/node-gyp",
+              "label": "node-gyp"
+            },
+            {
+              "link": "/learn/node-api/build-tools/cmake-js",
+              "label": "CMake.js"
+            },
+            {
+              "link": "/learn/node-api/build-tools/node-pre-gyp",
+              "label": "node-pre-gyp"
+            }
+          ]
         },
         {
           "link": "/learn/node-api/special-topics",
-          "label": "Special Topics"
+          "label": "Special Topics",
+          "items": [
+            {
+              "link": "/learn/node-api/special-topics",
+              "label": "Overview"
+            },
+            {
+              "link": "/learn/node-api/special-topics/context-awareness",
+              "label": "Context Awareness"
+            },
+            {
+              "link": "/learn/node-api/special-topics/object-function-refs",
+              "label": "Object and Function References"
+            },
+            {
+              "link": "/learn/node-api/special-topics/asyncworker",
+              "label": "AsyncWorker"
+            },
+            {
+              "link": "/learn/node-api/special-topics/thread-safe-functions",
+              "label": "Thread-Safe Functions"
+            }
+          ]
         }
       ]
     }
