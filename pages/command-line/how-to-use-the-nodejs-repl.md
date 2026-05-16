@@ -87,13 +87,16 @@ If you press the `up` arrow key, you will get access to the history of the previ
 
 The REPL has some special commands, all starting with a dot `.`. They are
 
-- `.help`: shows the dot commands help
-- `.editor`: enables editor mode, to write multiline JavaScript code with ease. Once you are in this mode, enter ctrl-D to run the code you wrote.
-- `.break`: when inputting a multi-line expression, entering the .break command will abort further input. Same as pressing ctrl-C.
-- `.clear`: resets the REPL context to an empty object and clears any multi-line expression currently being input.
-- `.load`: loads a JavaScript file, relative to the current working directory
-- `.save`: saves all you entered in the REPL session to a file (specify the filename)
-- `.exit`: exits the repl (same as pressing ctrl-C two times)
+- `.help`: shows the dot commands help.
+
+- `.editor`: enters editor mode, to write multiline JavaScript code.
+- `.break` / `.clear`: exits multi-line code like functions. Same as pressing CTRL-C.
+- `.load`: loads a JavaScript file, relative to the current working directory.
+- `.save`: saves all commands you entered in the session to a file.
+- 
+
+
+- `.exit`: exits the REPL (same as pressing CTRL-C twice).
 
 The REPL knows when you are typing a multi-line statement without the need to invoke `.editor`.
 
@@ -111,6 +114,12 @@ and you press `enter`, the REPL will go to a new line that starts with 3 dots, i
 ```
 
 If you type `.break` at the end of a line, the multiline mode will stop and the statement will not be executed.
+
+`.clear` clear the whole REPL context like restarting the session only in a custom REPL created programmatically:
+
+```console
+require('repl').start();
+```
 
 ### Run REPL from JavaScript file
 
