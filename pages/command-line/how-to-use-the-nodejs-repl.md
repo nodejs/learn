@@ -88,11 +88,15 @@ If you press the `up` arrow key, you will get access to the history of the previ
 The REPL has some special commands, all starting with a dot `.`. They are
 
 - `.help`: shows the dot commands help.
+
 - `.editor`: enters editor mode, to write multiline JavaScript code.
-- `.break` / `.clear`: exits multi-line code like functions. same as pressing ctrl-C.
+- `.break` / `.clear`: exits multi-line code like functions. Same as pressing CTRL-C.
 - `.load`: loads a JavaScript file, relative to the current working directory.
 - `.save`: saves all commands you entered in the session to a file.
-- `.exit`: exits the REPL (same as pressing ctrl-C two times).
+- 
+
+
+- `.exit`: exits the REPL (same as pressing CTRL-C twice).
 
 The REPL knows when you are typing a multi-line statement without the need to invoke `.editor`.
 
