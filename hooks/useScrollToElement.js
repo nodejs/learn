@@ -39,10 +39,15 @@ const useScrollToElement = (id, ref, debounceTime = 300) => {
 
   // Save scroll position on scroll
   const handleScroll = position => {
-    localStorage.setItem(`navigationState:${id}`, JSON.stringify(position));
-    // Save the current scroll position in the navigation state
-    const state = navigationState;
-    state[id] = position;
+    try {
+      localStorage.setItem(`navigationState:${id}`, JSON.stringify(position));
+    } catch {
+      // localStorage may be unavailable (e.g. Safari private browsing)
+      // or the quota may be exceeded — fall through so in-memory state
+      // is still updated below.
+    }
+    // Always update in-memory state regardless of localStorage availability
+    navigationState[id] = position;
   };
 
   // Use the useScroll hook to handle scroll events with debouncing
