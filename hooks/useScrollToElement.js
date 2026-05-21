@@ -35,9 +35,7 @@ const useScrollToElement = (id, ref, debounceTime = 300) => {
     if (savedState && savedState.y !== element.scrollTop) {
       element.scroll({ top: savedState.y, behavior: 'auto' });
     }
-    // navigationState is intentionally excluded
-    // it's a stable object reference that doesn't need to trigger re-runs
-  }, [id, ref.current]);
+  }, [id]);
 
   // Save scroll position on scroll
   const handleScroll = position => {

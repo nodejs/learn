@@ -45,7 +45,7 @@ const useScroll = (ref, { debounceTime = 300, onScroll }) => {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [ref.current, debounceTime]);
+  }, [debounceTime]);
 };
 
 export default useScroll;
