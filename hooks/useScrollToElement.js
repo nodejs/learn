@@ -20,14 +20,14 @@ const useScrollToElement = (id, ref, debounceTime = 300) => {
 
     if (!savedState) {
       try {
-        const raw = localStorage.getItem(`navigationState`);
+        const raw = localStorage.getItem(`navigationState:${id}`);
         if (raw) {
           savedState = JSON.parse(raw);
           // Hydrate context so it's available for the rest of the session
           navigationState[id] = savedState;
         }
       } catch {
-        localStorage.removeItem(`navigationState`);
+        localStorage.removeItem(`navigationState:${id}`);
       }
     }
 
@@ -41,8 +41,7 @@ const useScrollToElement = (id, ref, debounceTime = 300) => {
 
   // Save scroll position on scroll
   const handleScroll = position => {
-    console.log('handleScroll', position);
-    localStorage.setItem(`navigationState`, JSON.stringify(position));
+    localStorage.setItem(`navigationState:${id}`, JSON.stringify(position));
     // Save the current scroll position in the navigation state
     const state = navigationState;
     state[id] = position;
