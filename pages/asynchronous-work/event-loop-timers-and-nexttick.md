@@ -22,29 +22,36 @@ this document) which may make async API calls, schedule timers, or call
 The following diagram shows a simplified overview of the event loop's
 order of operations.
 
+<!--
+  NOTE: This diagram may appear misaligned in the markdown source,
+  but it renders correctly in the HTML view on the live page.
+  Future contributors: please do not adjust the alignment here
+  unless it is also broken on a live page.
+-->
+
 ```
    ┌───────────────────────────┐
-   │           timers          │
+   │          timers         │
    └─────────────┬─────────────┘
-                 │
-                 v
+                │
+                v
    ┌───────────────────────────┐
-┌─>│     pending callbacks     │
+┌─>│     pending callbacks   │
 │  └─────────────┬─────────────┘
 │  ┌─────────────┴─────────────┐
-│  │       idle, prepare       │
-│  └─────────────┬─────────────┘      ┌───────────────┐
+│  │       idle, prepare     │
+│  └─────────────┬─────────────┘      ┌────────────────┐
 │  ┌─────────────┴─────────────┐      │   incoming:   │
-│  │           poll            │<─────┤  connections, │
+│  │           poll          │<─────┤  connections, │
 │  └─────────────┬─────────────┘      │   data, etc.  │
-│  ┌─────────────┴─────────────┐      └───────────────┘
-│  │           check           │
+│  ┌─────────────┴─────────────┐      └────────────────┘
+│  │           check         │
 │  └─────────────┬─────────────┘
 │  ┌─────────────┴─────────────┐
-│  │      close callbacks      │
+│  │      close callbacks    │
 │  └─────────────┬─────────────┘
 │  ┌─────────────┴─────────────┐
-└──┤           timers          │
+└──┤           timers        │
    └───────────────────────────┘
 ```
 
