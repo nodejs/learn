@@ -188,7 +188,7 @@ By default, Node.js uses Mozilla’s bundled root CAs and does not consult the O
 Error: self signed certificate in certificate chain
 ```
 
-From Node.js v22.15.0, v23.9.0, v24.0.0 and above, Node.js can be configured to trust these custom CAs using the system's certificate store.
+From Node.js v22.19.0, v24.6.0 and above, Node.js can be configured to trust these custom CAs using the system's certificate store.
 
 ### Adding CA Certificates from the System Store
 
