@@ -15,7 +15,7 @@
     "eslint-plugin-mdx": "^3.7.0",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.0.5",
     "prettier": "^3.8.3",
     "remark-frontmatter": "^5.0.0",
     "typescript-eslint": "^8.59.1"
