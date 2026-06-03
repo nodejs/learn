@@ -44,7 +44,7 @@ You can get more information on the [API docs](https://nodejs.org/docs/latest-v2
 
 Type stripping only works for TypeScript syntax that can be removed without changing the runtime JavaScript. This includes common type-only syntax such as type annotations, interfaces, type aliases, and `import type`.
 
-Syntax that requires JavaScript code generation is not handled by type stripping alone. Examples include `enum`, parameter properties, namespaces with runtime code, and import aliases. Use a runner, or a separate transpilation step if your project needs those features.
+Syntax that requires JavaScript code generation is not handled by type stripping alone. Examples include `enum`, parameter properties, namespaces with runtime code, and import aliases. Use a runner or a separate transpilation step if your project needs those features.
 
 ### Type checking
 
