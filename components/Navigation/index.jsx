@@ -16,7 +16,7 @@ export default ({ metadata }) => {
 
   return (
     <NavBar
-      Logo={Logo}
+      Logo={() => <Logo variant="pride" />}
       sidebarItemTogglerAriaLabel="Toggle navigation menu"
       navItems={navigation}
     >
