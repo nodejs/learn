@@ -34,14 +34,6 @@ You can disable it via [`--no-experimental-strip-types`](https://nodejs.org/docs
 node --no-experimental-strip-types example.ts
 ```
 
-In v22.7.0 the flag [`--experimental-transform-types`](https://nodejs.org/docs/latest-v22.x/api/cli.html#--experimental-transform-types) was added to enable TypeScript-only syntax that requires transformation, like `enum`s and `namespace`. Enabling `--experimental-transform-types` automatically implies that `--experimental-strip-types` is enabled, so there's no need to use both flags in the same command:
-
-```bash
-node --experimental-transform-types another-example.ts
-```
-
-This flag is opt-in, and you should only use it if your code requires it.
-
 ## Constraints
 
 The support for TypeScript in Node.js has some constraints to keep in mind:
@@ -52,7 +44,7 @@ You can get more information on the [API docs](https://nodejs.org/docs/latest-v2
 
 Type stripping only works for TypeScript syntax that can be removed without changing the runtime JavaScript. This includes common type-only syntax such as type annotations, interfaces, type aliases, and `import type`.
 
-Syntax that requires JavaScript code generation is not handled by type stripping alone. Examples include `enum`, parameter properties, namespaces with runtime code, and import aliases. Use `--experimental-transform-types`, a runner, or a separate transpilation step if your project needs those features.
+Syntax that requires JavaScript code generation is not handled by type stripping alone. Examples include `enum`, parameter properties, namespaces with runtime code, and import aliases. Use a runner, or a separate transpilation step if your project needs those features.
 
 ### Type checking
 
