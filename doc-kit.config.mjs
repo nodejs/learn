@@ -11,6 +11,9 @@ export default {
     input: ['pages/**/*.md'],
     baseURL: `https://${origin}/learn`,
   },
+  'jsx-ast': {
+    generateIndexPage: false,
+  },
   web: {
     // Important Configuration
     project: 'Node.js',
