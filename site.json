@@ -1,11 +1,12 @@
 {
+  "defaultLocale": "en",
   "navigation": [
     {
       "link": "/learn",
       "text": "Learn"
     },
     {
-      "link": "/about",
+      "link": "/en/about",
       "text": "About"
     },
     {
@@ -13,7 +14,7 @@
       "text": "Download"
     },
     {
-      "link": "/blog",
+      "link": "/en/blog",
       "text": "Blog"
     },
     {

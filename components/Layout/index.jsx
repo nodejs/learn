@@ -7,6 +7,7 @@ import NavBar from '../Navigation';
 import MetaBar from '../Metabar';
 import SideBar from '../Sidebar';
 import Footer from '../Footer';
+import LocaleProvider from '../providers/LocaleProvider';
 
 /**
  * @typedef {Object} Props
@@ -20,7 +21,7 @@ import Footer from '../Footer';
  * @param {Props} props
  */
 export default ({ metadata, headings, readingTime, children }) => (
-  <>
+  <LocaleProvider>
     <Analytics basePath="/learn/_vercel" />
     <SpeedInsights basePath="/learn/_vercel" />
     <NavBar metadata={metadata} />
@@ -40,5 +41,5 @@ export default ({ metadata, headings, readingTime, children }) => (
       </div>
     </Article>
     <Footer metadata={metadata} />
-  </>
+  </LocaleProvider>
 );
