@@ -30,7 +30,7 @@ it will install everything the project needs, in the `node_modules` folder, crea
 
 ### Installing a single package
 
-You can also install a specific package by running
+You can also install a specific package by running yes it is
 
 ```bash
 npm install <package-name>
