@@ -179,4 +179,4 @@ to achieve this scenario:
 
 `setTimeout` and `setInterval` are available in Node.js, through the [Timers module](https://nodejs.org/api/timers.html).
 
-Node.js also provides `setImmediate()`, which is equivalent to using `setTimeout(() => {}, 0)`, mostly used to work with the Node.js Event Loop.
+Node.js also provides `setImmediate()`, which schedules a callback to execute during the check phase of the event loop. Unlike `setTimeout(() => {}, 0)`, it is not generally equivalent because their callbacks are executed in different phases of the event loop and their execution order depends on the execution context.
