@@ -21,7 +21,7 @@
     "typescript-eslint": "^8.60.0"
   },
   "dependencies": {
-    "@node-core/ui-components": "^1.7.0",
+    "@node-core/ui-components": "^1.7.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0"
   },
