@@ -1,5 +1,6 @@
 import TableOfContents from '@node-core/ui-components/Common/TableOfContents';
 import Article from '@node-core/ui-components/Containers/Article';
+import RemoteLoadableBanner from '@node-core/doc-kit/src/generators/web/ui/components/AnnouncementBanner/RemoteLoadableBanner.jsx';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
@@ -21,6 +22,7 @@ import Footer from '../Footer';
  */
 export default ({ metadata, headings, readingTime, children }) => (
   <>
+    <RemoteLoadableBanner />
     <Analytics basePath="/learn/_vercel" />
     <SpeedInsights basePath="/learn/_vercel" />
     <NavBar metadata={metadata} />
