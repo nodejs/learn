@@ -17,6 +17,7 @@ export default ({ metadata }) => {
   return (
     <NavBar
       Logo={Logo}
+      pathname="/learn"
       sidebarItemTogglerAriaLabel="Toggle navigation menu"
       navItems={navigation}
     >
