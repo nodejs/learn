@@ -56,6 +56,8 @@ server.listen(port, hostname, () => {
 });
 ```
 
+Both examples create the same HTTP server. The first uses the CommonJS module system (`require()`), while the second uses ECMAScript modules (`import`). Which one you use depends on your project's module system and configuration.
+
 To run this snippet, save it as a `server.js` file and run `node server.js` in your terminal.
 If you use the mjs version of the code, you should save it as a `server.mjs` file and run `node server.mjs` in your terminal.
 
