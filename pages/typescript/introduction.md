@@ -8,7 +8,7 @@ authors: sbielenica, ovflowd, vaishnav-mk, AugustinMauroy
 
 **[TypeScript](https://www.typescriptlang.org)** is an open-source language maintained and developed by Microsoft.
 
-Basically, TypeScript adds additional syntax to JavaScript to support a tighter integration with your editor. Catch errors early in your editor or in your CI/CD pipeline, and write more maintainable code.
+TypeScript is a superset of JavaScript that adds a static type system. It helps catch type-related errors during development, provides better editor support through features such as autocompletion and safe refactoring, and makes codebases easier to maintain as they grow.
 
 We can talk about other TypeScript benefits later, let's see some examples now!
 
@@ -38,9 +38,38 @@ const justine = {
 const isJustineAnAdult = isAdult(justine);
 ```
 
-The first part (with the `type` keyword) is responsible for declaring our custom object type representing users. Later we utilize this newly created type to create the function `isAdult` that accepts one argument of type `User` and returns a `boolean`. After this, we create `justine`, our example data that can be used for calling the previously defined function. Finally, we create a new variable with information on whether `justine` is an adult.
+Let's understand what happens here.
 
-There are additional things about this example that you should know. Firstly, if we do not comply with the declared types, TypeScript will inform us that something is wrong and prevent misuse. Secondly, not everything must be typed explicitly—TypeScript infers types for us. For example, the variable `isJustineAnAdult` is of type `boolean` even if we didn't type it explicitly, and `justine` would be a valid argument for our function even though we didn't declare this variable as of `User` type.
+First, we define a custom type named `User`. This type describes the
+structure that every user object should follow. In this example, a user
+must have a `name` of type `string` and an `age` of type `number`.
+
+Next, we create the `isAdult` function. It accepts a parameter of type
+`User` and returns a `boolean`, indicating whether the user's age is at
+least `18`.
+
+We then create a `justine` object. The `satisfies` operator verifies
+that the object conforms to the `User` type while preserving the
+object's most specific inferred type. This allows TypeScript to validate
+the object's structure without changing its inferred properties.
+
+Finally, we call `isAdult(justine)` and store the result in
+`isJustineAnAdult`.
+
+One of TypeScript's strengths is its ability to **infer types
+automatically**. For example, even though we never explicitly declared
+the type of `isJustineAnAdult`, TypeScript correctly infers it as
+`boolean`.
+
+If the code doesn't match the declared types---for example, if `age`
+were a string instead of a number---TypeScript reports an error during
+development, helping you catch mistakes before your code runs.
+
+> **Note**
+>
+> TypeScript's type system exists only during development. During
+> compilation, all type annotations are removed, so they do not affect
+> your application's runtime behavior.
 
 ## What does TypeScript consist of?
 
