@@ -527,6 +527,27 @@
           ]
         }
       ]
+    },
+    {
+      "groupName": "Userland Migrations",
+      "items": [
+        {
+          "link": "/learn/userland-migrations/axios-to-whatwg-fetch",
+          "label": "Axios to WHATWG Fetch"
+        },
+        {
+          "link": "/learn/userland-migrations/chalk-to-util-styletext",
+          "label": "Chalk to util.styleText()"
+        },
+        {
+          "link": "/learn/userland-migrations/correct-ts-specifiers",
+          "label": "Correct TypeScript Specifiers"
+        },
+        {
+          "link": "/learn/userland-migrations/mocha-to-node-test-runner",
+          "label": "Mocha to Node.js Test Runner"
+        }
+      ]
     }
   ]
 }
