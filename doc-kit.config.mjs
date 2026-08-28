@@ -2,14 +2,18 @@ import web from '@node-core/doc-kit/src/generators/web/index.mjs';
 import { join } from 'node:path';
 
 const origin =
-  process.env.VERCEL_ENV === 'preview' ? process.env.VERCEL_URL : 'nodejs.org';
+  process.env.VERCEL_ENV === 'preview'
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.VERCEL_ENV === 'production'
+      ? 'https://nodejs.org'
+      : 'http://localhost:3000';
 
 /** @type {import('@node-core/doc-kit/src/utils/configuration/types.d.ts').Configuration} */
 export default {
   global: {
     output: 'out/learn',
     input: ['pages/**/*.md'],
-    baseURL: `https://${origin}/learn`,
+    baseURL: `${origin}/learn`,
   },
   'jsx-ast': {
     generateIndexPage: false,
