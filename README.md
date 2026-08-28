@@ -32,10 +32,17 @@ conducted at the 2025 Cambridge Node.js Collaborators' Summit.
 
 ## Development
 
+Use Node.js 24, install the dependencies, and build the static site:
+
 ```bash
 npm install
-npm run build   # generates static site + Orama search DB in out/
+npm run build
+npx serve out
 ```
+
+The build generates the static site and Orama search database in `out/`.
+After starting the server, open <http://localhost:3000/learn>. Rebuild the site
+after making changes to preview the updated content.
 
 ## Contributing
 
