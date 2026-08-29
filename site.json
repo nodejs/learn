@@ -544,6 +544,10 @@
           "label": "Correct TypeScript Specifiers"
         },
         {
+          "link": "/learn/userland-migrations/kleur-to-util-styletext",
+          "label": "Kleur to util.styleText"
+        },
+        {
           "link": "/learn/userland-migrations/mocha-to-node-test-runner",
           "label": "Mocha to Node.js Test Runner"
         }
