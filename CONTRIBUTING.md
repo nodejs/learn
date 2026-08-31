@@ -43,8 +43,8 @@ for prior user-research context on content organisation.
 
 ## Building locally
 
-This repository requires Node.js 24. Install the dependencies and generate the
-static site:
+This repository requires the Node.js version specified in the
+[`.nvmrc` file](.nvmrc). Install the dependencies and generate the static site:
 
 ```bash
 npm install
