@@ -21,6 +21,10 @@ export default {
     ref: 'main',
     changelog: [],
   },
+  'jsx-ast': {
+    // Off by default in doc-kit 2.x, but the Metabar has always shown it.
+    showReadingTime: true,
+  },
   html: {
     // Important Configuration
     project: 'Node.js',
@@ -30,6 +34,11 @@ export default {
     useAbsoluteURLs: true,
     templatePath: join(import.meta.dirname, 'template.html'),
     generateAllPage: false,
+
+    // Registers the component as an island, so it hydrates client-side
+    components: {
+      Authors: join(import.meta.dirname, 'components/Authors/index.jsx'),
+    },
 
     // Imports
     imports: {
