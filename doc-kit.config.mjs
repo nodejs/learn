@@ -5,11 +5,21 @@ const origin =
 
 /** @type {import('@doc-kit/core/utils/configuration/types.d.ts').Configuration} */
 export default {
+  extends: '@node-core/doc-kit/config',
+
   target: ['html', 'orama-db', 'sitemap'],
   global: {
     output: 'out/learn',
     input: ['pages/**/*.md'],
     baseURL: `https://${origin}/learn`,
+
+    // The preset documents the runtime itself, so it points these at
+    // nodejs/node. Learn is its own repository, and it has no use for the
+    // release history — leaving it set would fetch and parse the Node.js
+    // CHANGELOG on every build to populate a version picker we never render.
+    repository: 'nodejs/learn',
+    ref: 'main',
+    changelog: [],
   },
   html: {
     // Important Configuration
