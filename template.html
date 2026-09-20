@@ -12,7 +12,6 @@
       name="description"
       content="Node.js® is a free, open-source, cross-platform JavaScript runtime environment that lets developers create servers, web apps, command line tools and scripts."
     />
-    <link rel="stylesheet" href="${root}styles.css" />
     <meta property="og:title" content="${title}" />
     <meta
       property="og:description"
@@ -28,26 +27,11 @@
       href="https://nodejs.org/learn${metadata.path.replace('/index', '')}"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Open+Sans:ital,wght@0,300..800;1,300..800"
-    />
+    ${preloads} ${assets} ${head}
 
     <!-- Apply theme before paint to avoid Flash of Unstyled Content -->
     <script>
-      document.documentElement.setAttribute(
-        'data-theme',
-        (document.documentElement.style.colorScheme =
-          localStorage.getItem('theme') ||
-          (matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light'))
-      );
-    </script>
-    <script type="importmap">
-      ${importMap}
+      ${themeScript}
     </script>
     <script type="speculationrules">
       ${speculationRules}
@@ -56,6 +40,5 @@
 
   <body>
     <div id="root">${dehydrated}</div>
-    <script type="module" src="${root}${entrypoint}"></script>
   </body>
 </html>

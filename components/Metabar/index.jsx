@@ -2,7 +2,7 @@ import MetaBar from '@node-core/ui-components/Containers/MetaBar';
 import AvatarGroup from '@node-core/ui-components/Common/AvatarGroup';
 import GitHubIcon from '@node-core/ui-components/Icons/Social/GitHub';
 
-import { editURL } from '#theme/config';
+import { editURL, server } from '#theme/config';
 
 export default ({ metadata, headings = [], readingTime }) => {
   const editThisPage = editURL.replace('{path}', metadata.path);
@@ -18,7 +18,7 @@ export default ({ metadata, headings = [], readingTime }) => {
       headings={{ items: headings }}
       items={{
         'Reading Time': readingTime,
-        ...(CLIENT && authors?.length
+        ...(!server && authors?.length
           ? {
               Authors: <AvatarGroup avatars={authors} as="a" limit={5} />,
             }
