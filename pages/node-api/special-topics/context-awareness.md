@@ -14,7 +14,7 @@ Each Worker Thread operates within its own environment which is also referred to
 
 If your native add-on requires persistent memory, allocating this memory in static global space is a recipe for disaster. Instead, it is _essential_ that this memory is allocated each time within the context in which the native add-on is initialized. This memory is typically allocated in your native add-on's `Init` method. But in some cases it can also be allocated as your native add-on is running.
 
-In addition to the multiple loading described above, your native add-on is also subject to automatic unloading by the JavaScript runtime engine's garbage collector when your native add-on is no longer in use. To prevent memory leaks, any memory your native add-on has allocated _must_ be freed when your native add-on is unloaded.
+Add-ons loaded in worker threads are unloaded when the last thread that has them loaded terminates (add-ons loaded on the main Node.js thread persist for the lifetime of the process.) To prevent memory leaks, any memory your native add-on has allocated _must_ be freed when your native add-on is unloaded.
 
 The next sections describe two different techniques you can use to allocate and free persistent memory associated with your native add-on. The techniques may be used individually or together in your native add-on.
 
