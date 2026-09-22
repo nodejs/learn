@@ -2,10 +2,10 @@ import { join } from 'node:path';
 
 const origin =
   process.env.VERCEL_ENV === 'preview'
-    ? `https://${process.env.VERCEL_URL}`
+    ? process.env.VERCEL_URL
     : process.env.VERCEL_ENV === 'production'
-      ? 'https://nodejs.org'
-      : 'http://localhost:3000';
+      ? 'nodejs.org'
+      : 'localhost:3000';
 
 /** @type {import('@doc-kit/core/utils/configuration/types.d.ts').Configuration} */
 export default {
