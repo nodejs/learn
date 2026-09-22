@@ -43,11 +43,22 @@ for prior user-research context on content organisation.
 
 ## Building locally
 
+This repository requires the Node.js version specified in the
+[`.nvmrc` file](.nvmrc). Install the dependencies and generate the static site:
+
 ```bash
 npm install
 npm run build
-# Output is written to out/
 ```
+
+The output is written to `out/`. Start a local server from a separate terminal:
+
+```bash
+npx serve out
+```
+
+Open <http://localhost:3000/learn> to preview the site. Run `npm run build`
+again after making changes to update the generated output.
 
 ## Code of Conduct
 

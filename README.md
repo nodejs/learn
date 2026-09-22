@@ -30,13 +30,6 @@ The structure is based on
 [Card Sort research](https://github.com/nodejs/nodejs.org/issues/8234)
 conducted at the 2025 Cambridge Node.js Collaborators' Summit.
 
-## Development
-
-```bash
-npm install
-npm run build   # generates static site + Orama search DB in out/
-```
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
