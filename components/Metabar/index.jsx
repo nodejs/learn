@@ -1,16 +1,21 @@
 import MetaBar from '@node-core/ui-components/Containers/MetaBar';
-import AvatarGroup from '@node-core/ui-components/Common/AvatarGroup';
 import GitHubIcon from '@node-core/ui-components/Icons/Social/GitHub';
+
+import Authors from '../Authors';
 
 import { editURL } from '#theme/config';
 
 export default ({ metadata, headings = [], readingTime }) => {
   const editThisPage = editURL.replace('{path}', metadata.path);
-  const authors = metadata.authors?.split(',').map(id => ({
-    image: `https://avatars.githubusercontent.com/${id.trim()}`,
-    url: `https://github.com/${id.trim()}`,
-    nickname: id,
-  }));
+  const authors = metadata.authors?.split(',').map(rawId => {
+    const id = rawId.trim();
+
+    return {
+      image: `https://avatars.githubusercontent.com/${id}`,
+      url: `https://github.com/${id}`,
+      nickname: id,
+    };
+  });
 
   return (
     <MetaBar
@@ -18,11 +23,7 @@ export default ({ metadata, headings = [], readingTime }) => {
       headings={{ items: headings }}
       items={{
         'Reading Time': readingTime,
-        ...(CLIENT && authors?.length
-          ? {
-              Authors: <AvatarGroup avatars={authors} as="a" limit={5} />,
-            }
-          : {}),
+        ...(authors?.length ? { Authors: <Authors authors={authors} /> } : {}),
         Contribute: (
           <>
             <GitHubIcon className="fill-neutral-700 dark:fill-neutral-100" />
