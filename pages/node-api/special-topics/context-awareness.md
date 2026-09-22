@@ -73,8 +73,7 @@ static int ModifyAddonData(AddonData* data, double offset) {
 }
 
 // This is boilerplate. The instance of the `AddonData` structure created during
-// addon initialization must be destroyed when the addon is unloaded. This
-// function will be called when the addon's `exports` object is garbage collected.
+// addon initialization must be destroyed when the addon is unloaded.
 static void DeleteAddonData(napi_env env, void* data, void* hint) {
   // Avoid unused parameter warnings.
   (void) env;
