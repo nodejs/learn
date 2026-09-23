@@ -4,9 +4,15 @@ import { waitForIsland } from './helpers.mjs';
 
 const ARTICLE = '/learn/getting-started/introduction-to-nodejs';
 
-/** @param {import('@playwright/test').Page} page */
-const getTheme = page =>
-  page.evaluate(() => document.documentElement.dataset.theme);
+/**
+ * The theme is applied in an effect after the menu item is clicked, so use a
+ * retrying assertion rather than reading `data-theme` once.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {'light' | 'dark'} theme
+ */
+const expectTheme = (page, theme) =>
+  expect(page.locator('html')).toHaveAttribute('data-theme', theme);
 
 /**
  * @param {import('@playwright/test').Page} page
@@ -61,10 +67,10 @@ test.describe('Theme', () => {
     await page.goto(ARTICLE);
 
     await selectTheme(page, 'Dark');
-    expect(await getTheme(page)).toBe('dark');
+    await expectTheme(page, 'dark');
 
     await selectTheme(page, 'Light');
-    expect(await getTheme(page)).toBe('light');
+    await expectTheme(page, 'light');
   });
 
   test('keeps the chosen theme across pages', async ({ page }) => {
@@ -72,7 +78,7 @@ test.describe('Theme', () => {
     await selectTheme(page, 'Dark');
 
     await page.goto('/learn/getting-started/fetch');
-    expect(await getTheme(page)).toBe('dark');
+    await expectTheme(page, 'dark');
   });
 });
 
