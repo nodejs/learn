@@ -1,11 +1,14 @@
 import { join } from 'node:path';
 
+// The full origin (scheme included) lives here, and only here, so `baseURL`
+// below never has to guess the protocol. Local builds are served over plain
+// HTTP (see CONTRIBUTING.md), previews and production over HTTPS.
 const origin =
   process.env.VERCEL_ENV === 'preview'
-    ? process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
     : process.env.VERCEL_ENV === 'production'
-      ? 'nodejs.org'
-      : 'localhost:3000';
+      ? 'https://nodejs.org'
+      : 'http://localhost:3000';
 
 /** @type {import('@doc-kit/core/utils/configuration/types.d.ts').Configuration} */
 export default {
@@ -15,7 +18,7 @@ export default {
   global: {
     output: 'out/learn',
     input: ['pages/**/*.md'],
-    baseURL: `https://${origin}/learn`,
+    baseURL: `${origin}/learn`,
 
     // The preset documents the runtime itself, so it points these at
     // nodejs/node. Learn is its own repository, and it has no use for the
