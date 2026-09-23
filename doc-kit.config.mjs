@@ -42,9 +42,10 @@ export default {
     templatePath: join(import.meta.dirname, 'template.html'),
     generateAllPage: false,
 
-    // Registers the component as an island, so it hydrates client-side
+    // Registers the components as islands, so they hydrate client-side
     components: {
       Authors: join(import.meta.dirname, 'components/Authors/index.jsx'),
+      Sidebar: join(import.meta.dirname, 'components/Sidebar/index.jsx'),
     },
 
     // Imports

@@ -101,3 +101,38 @@ test.describe('Search', () => {
     await expect(page).not.toHaveURL(new RegExp(`${ARTICLE}$`));
   });
 });
+
+test.describe('Small screens', () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+
+  test('the navigation dropdown leads to other articles', async ({ page }) => {
+    await page.goto('/learn/getting-started/fetch');
+
+    // The sidebar collapses into a dropdown that only works once hydrated.
+    await waitForIsland(page, 'Sidebar');
+    await page.getByRole('combobox', { name: 'Navigation' }).click();
+
+    // Radix ignores a selection made in the first moments after the list
+    // opens, so wait for it to settle and choose with the keyboard.
+    const option = page.getByRole('option', {
+      name: 'Introduction to Node.js',
+    });
+    await expect(option).toBeVisible();
+    await option.focus();
+    await page.keyboard.press('Enter');
+
+    await expect(page).toHaveURL(new RegExp(`${ARTICLE}$`));
+  });
+
+  test('the menu button reveals the site links', async ({ page }) => {
+    await page.goto(ARTICLE);
+
+    const blogLink = page.getByRole('navigation').getByRole('link', {
+      name: 'Blog',
+    });
+    await expect(blogLink).toBeHidden();
+
+    await page.getByRole('button', { name: 'Toggle navigation menu' }).click();
+    await expect(blogLink).toBeVisible();
+  });
+});
