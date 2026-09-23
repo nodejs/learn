@@ -1,5 +1,5 @@
 # Security Notes
-# Only selected Actions are allowed within this repository. Please refer to (https://github.com/nodejs/nodejs.org/settings/actions)
+# Only selected Actions are allowed within this repository. Please refer to (https://github.com/nodejs/learn/settings/actions)
 # for the full list of available actions. If you want to add a new one, please reach out a maintainer with Admin permissions.
 # REVIEWERS, please always double-check security practices before merging a PR that contains workflow changes!!
 # AUTHORS, please only use actions with explicit SHA references, and avoid using `@master` or `@main` references or `@version` tags.
