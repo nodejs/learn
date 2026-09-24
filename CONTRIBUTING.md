@@ -54,11 +54,27 @@ npm run build
 The output is written to `out/`. Start a local server from a separate terminal:
 
 ```bash
-npx serve out
+npm run serve
 ```
 
 Open <http://localhost:3000/learn> to preview the site. Run `npm run build`
 again after making changes to update the generated output.
+
+## Running the end-to-end tests
+
+The [Playwright](https://playwright.dev) tests in `tests/e2e/` check that the
+built site loads its assets, and that navigation, search and the theme toggle
+work. They run against the Vercel preview of every pull request. To run them
+locally against your own build:
+
+```bash
+npm run build
+npx playwright install chromium # first time only
+npm run test:e2e
+```
+
+The tests start `npm run serve` for you, or reuse a server already running on
+port 3000. Set `PLAYWRIGHT_BASE_URL` to test a deployed copy instead.
 
 ## Code of Conduct
 

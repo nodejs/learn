@@ -27,7 +27,7 @@ export default ({ metadata, headings, readingTime, children }) => (
     <SpeedInsights basePath="/learn/_vercel" />
     <NavBar metadata={metadata} />
     <Article>
-      <SideBar metadata={metadata} />
+      <SideBar pathname={`/learn${metadata.path.replace('/index', '')}`} />
       <div>
         <div>
           <TableOfContents headings={headings} summaryTitle="On this page" />

@@ -5,6 +5,8 @@
     "lint:fix": "eslint --fix .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "serve": "serve out --listen 3000",
+    "test:e2e": "playwright test",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -13,6 +15,7 @@
     "@eslint/js": "^10.0.1",
     "@node-core/doc-kit": "2.0.2",
     "@node-core/remark-lint": "^1.3.0",
+    "@playwright/test": "1.63.0",
     "eslint": "^10.9.1",
     "eslint-plugin-mdx": "^3.8.1",
     "globals": "^17.11.0",
@@ -20,6 +23,7 @@
     "lint-staged": "^17.5.1",
     "prettier": "^3.9.6",
     "remark-frontmatter": "^5.0.0",
+    "serve": "14.2.6",
     "typescript-eslint": "^8.70.0"
   },
   "dependencies": {
