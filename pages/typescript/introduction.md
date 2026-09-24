@@ -61,8 +61,8 @@ automatically**. For example, even though we never explicitly declared
 the type of `isJustineAnAdult`, TypeScript correctly infers it as
 `boolean`.
 
-If the code doesn't match the declared types---for example, if `age`
-were a string instead of a number---TypeScript reports an error during
+If the code doesn't match the declared types, for example, if `age`
+were a string instead of a number, TypeScript reports an error during
 development, helping you catch mistakes before your code runs.
 
 > **Note**
