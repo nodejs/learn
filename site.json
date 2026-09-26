@@ -334,6 +334,10 @@
       "groupName": "Modules",
       "items": [
         {
+          "link": "/learn/modules/require-esm",
+          "label": "Requiring ES modules from CommonJS"
+        },
+        {
           "link": "/learn/modules/how-to-use-streams",
           "label": "How to use streams"
         },
