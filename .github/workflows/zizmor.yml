@@ -1,14 +1,22 @@
 name: GitHub Actions Security Analysis with zizmor 🌈
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
 
 permissions: {}
 
+env:
+  ZIZMOR_IMAGE: ghcr.io/zizmorcore/zizmor:1.29.0@sha256:863026d54f91271b10b60b67ad8054cb37120167e162482597db102b3026a284
+
 jobs:
-  zizmor:
+  zizmor-pr:
+    name: Run zizmor 🌈
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,6 +27,45 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor 🌈
-        run: pipx run --spec 'zizmor==1.29.0' zizmor --format=github --no-exit-codes .
+        run: |
+          docker run --rm \
+            --volume "${GITHUB_WORKSPACE}:/workspace:ro" \
+            --workdir /workspace \
+            --env GH_TOKEN \
+            "${ZIZMOR_IMAGE}" \
+            --format=github \
+            --no-exit-codes \
+            .
         env:
           GH_TOKEN: ${{ github.token }}
+
+  zizmor-main:
+    name: Run zizmor 🌈
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor 🌈
+        run: |
+          docker run --rm \
+            --volume "${GITHUB_WORKSPACE}:/workspace:ro" \
+            --workdir /workspace \
+            --env GH_TOKEN \
+            "${ZIZMOR_IMAGE}" \
+            --format=sarif \
+            . > results.sarif
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@7188fc363630916deb702c7fdcf4e481b751f97a # v4.37.1
+        with:
+          sarif_file: results.sarif
+          category: zizmor
