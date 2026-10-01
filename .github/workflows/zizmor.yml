@@ -35,9 +35,10 @@ jobs:
             "${ZIZMOR_IMAGE}" \
             --format=github \
             --no-exit-codes \
+            -- \
             .
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   zizmor-main:
     name: Run zizmor 🌈
@@ -60,9 +61,10 @@ jobs:
             --env GH_TOKEN \
             "${ZIZMOR_IMAGE}" \
             --format=sarif \
+            -- \
             . > results.sarif
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload SARIF
         uses: github/codeql-action/upload-sarif@7188fc363630916deb702c7fdcf4e481b751f97a # v4.37.1
