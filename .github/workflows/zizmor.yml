@@ -1,9 +1,6 @@
 name: GitHub Actions Security Analysis with zizmor 🌈
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -14,7 +11,6 @@ jobs:
   zizmor:
     runs-on: ubuntu-latest
     permissions:
-      security-events: write
       contents: read
       actions: read
     steps:
@@ -25,3 +21,6 @@ jobs:
 
       - name: Run zizmor 🌈
         uses: zizmorcore/zizmor-action@3dc1ecc9bcb9e94e9b2c709687979e1298497054 # v0.6.2
+        with:
+          advanced-security: false
+          annotations: true
