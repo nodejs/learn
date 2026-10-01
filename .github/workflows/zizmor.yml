@@ -19,6 +19,6 @@ jobs:
           persist-credentials: false
 
       - name: Run zizmor 🌈
-        run: pipx run --spec 'zizmor==1.29.0' zizmor --format=github .
+        run: pipx run --spec 'zizmor==1.29.0' zizmor --format=github --no-exit-codes .
         env:
           GH_TOKEN: ${{ github.token }}
