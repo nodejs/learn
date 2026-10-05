@@ -16,4 +16,4 @@ Popular node version managers are:
 - [`nvm`](https://github.com/nvm-sh/nvm) - an OpenJS project
 - [`nvm for windows`](https://github.com/nvm-windows/nvm) - not affiliated with nvm
 - [`nvs`](https://github.com/jasongin/nvs)
-- [`volta`](https://github.com/volta-cli/volta)
+- [`volta`](https://github.com/volta-cli/volta) - works but unmaintained
