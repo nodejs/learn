@@ -143,6 +143,10 @@
           "label": "An introduction to the npm package manager"
         },
         {
+          "link": "/learn/getting-started/node-version-managers",
+          "label": "Node version managers"
+        },
+        {
           "link": "/learn/getting-started/ecmascript-2015-es6-and-beyond",
           "label": "ECMAScript 2015 (ES6) and beyond"
         },
