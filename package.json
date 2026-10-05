@@ -1,4 +1,6 @@
 {
+  "name": "learn",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "build": "doc-kit generate --config-file doc-kit.config.mjs",
