@@ -108,7 +108,7 @@ request
 ```
 
 > This may seem a tad tedious, and in many cases, it is. Luckily,
-> there is a built-in module [`node:stream/consumers`](https://nodejs.org/api/webstreams.html#utility-consumers), or npm packages like
+> there is a built-in module [`node:stream/consumers`][], or npm packages like
 > [`concat-stream`][] and [`body`][] which can help hide away some of this
 > logic. It's important to have a good understanding of what's going on before
 > going down that road, and that's why you're here!
@@ -600,6 +600,7 @@ read through the API docs for [`EventEmitters`][], [`Streams`][], and [`HTTP`][]
 [`ReadableStream`]: https://nodejs.org/api/stream.html#stream_class_stream_readable
 [`rawHeaders`]: https://nodejs.org/api/http.html#http_message_rawheaders
 [`Buffer`]: https://nodejs.org/api/buffer.html
+[`node:stream/consumers`]: https://nodejs.org/api/webstreams.html#utility-consumers
 [`concat-stream`]: https://www.npmjs.com/package/concat-stream
 [`body`]: https://www.npmjs.com/package/body
 [`npm`]: https://www.npmjs.com
