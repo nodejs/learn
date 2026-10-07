@@ -67,16 +67,62 @@ A good example of why the backpressure mechanism implemented through streams is
 a great optimization can be demonstrated by comparing the internal system tools
 from Node.js' [`Stream`][] implementation.
 
-In one scenario, we will take a large file (approximately ~9 GB) and compress it
-using the familiar [`zip(1)`][] tool.
+In one scenario, we will read a large file (approximately ~9 GB) using `fs.readFileSync()`: and compress it
+using the module [`zlib`][], that wraps around another compression tool, [`gzip(1)`][].
 
-```
-zip The.Matrix.1080p.mkv
+```cjs
+const fs = require('node:fs');
+const zlib = require('node:zlib');
+
+const data = fs.readFileSync('The.Matrix.1080p.mkv');
+const compressed = zlib.gzipSync(data);
+fs.writeFileSync('The.Matrix.1080p.mkv.gz', compressed);
 ```
 
-While that will take a few minutes to complete, in another shell we may run
-a script that takes Node.js' module [`zlib`][], that wraps around another
-compression tool, [`gzip(1)`][].
+```mjs
+import { readFileSync, writeFileSync } from 'node:fs';
+import { gzipSync } from 'node:zlib';
+
+const data = readFileSync('The.Matrix.1080p.mkv');
+const compressed = gzipSync(data);
+writeFileSync('The.Matrix.1080p.mkv.gz', compressed);
+```
+
+This fails on two separate limits, whichever you hit first: the buffer size cap or heap exhaustion. Let’s rewrite it another way, using Node.js' [`Stream`][] but without backpressure:
+
+```cjs
+const { createReadStream, createWriteStream } = require('node:fs');
+const { createGzip } = require('node:zlib');
+
+const gzip = createGzip();
+
+const inp = createReadStream('The.Matrix.1080p.mkv');
+const out = createWriteStream('The.Matrix.1080p.mkv.gz');
+
+inp.on('data', (chunk) => gzip.write(chunk));
+inp.on('end', () => gzip.end());
+gzip.on('data', (chunk) => out.write(chunk));
+gzip.on('end', () => out.end());
+```
+
+```mjs
+import { createReadStream, createWriteStream } from 'node:fs';
+import { createGzip } from 'node:zlib';
+
+const gzip = createGzip();
+
+const inp = createReadStream('The.Matrix.1080p.mkv');
+const out = createWriteStream('The.Matrix.1080p.mkv.gz');
+
+inp.on('data', (chunk) => gzip.write(chunk));
+inp.on('end', () => gzip.end());
+gzip.on('data', (chunk) => out.write(chunk));
+gzip.on('end', () => out.end());
+```
+
+Neither write respects backpressure. Stage 1 keeps pushing into gzip even after `gzip.write()` returns false, and stage 2 keeps pushing into out even after `out.write()` returns false. Both internal buffers can grow without bound, so this is very prone to running out of memory. On a large compressible file both numbers climb fast and it heads for `JavaScript heap out of memory`.
+
+To resolve this, we may use pipe, which pauses the read when `write()` returns false. When `gzip.write()` returns `false`, `pipe` calls `pause()` on the read stream, halting disk reads. Once gzip works through its backlog and the buffer empties, it emits a `'drain'` event, and `pipe` calls `resume()` to start reading again.
 
 ```cjs
 const fs = require('node:fs');
@@ -99,10 +145,6 @@ const out = createWriteStream('The.Matrix.1080p.mkv.gz');
 
 inp.pipe(gzip).pipe(out);
 ```
-
-To test the results, try opening each compressed file. The file compressed by
-the [`zip(1)`][] tool will notify you the file is corrupt, whereas the
-compression finished by [`Stream`][] will decompress without error.
 
 > In this example, we use `.pipe()` to get the data source from one end
 > to the other. However, notice there are no proper error handlers attached. If
