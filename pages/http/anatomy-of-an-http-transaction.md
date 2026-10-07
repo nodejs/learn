@@ -108,9 +108,28 @@ request
 ```
 
 > This may seem a tad tedious, and in many cases, it is. Luckily,
-> there are modules like [`concat-stream`][] and [`body`][] on [`npm`][] which can
-> help hide away some of this logic. It's important to have a good understanding
-> of what's going on before going down that road, and that's why you're here!
+> there is a built-in module [`node:stream/consumers`][], or npm packages like
+> [`concat-stream`][] and [`body`][] which can help hide away some of this
+> logic. It's important to have a good understanding of what's going on before
+> going down that road, and that's why you're here!
+
+```cjs
+const { text } = require('node:stream/consumers');
+const http = require('node:http');
+
+const server = http.createServer(async (request, response) => {
+  let body = await text(request);
+});
+```
+
+```mjs
+import { text } from 'node:stream/consumers';
+import http from 'node:http';
+
+const server = http.createServer(async (request, response) => {
+  let body = await text(request);
+});
+```
 
 ## A Quick Thing About Errors
 
@@ -581,6 +600,7 @@ read through the API docs for [`EventEmitters`][], [`Streams`][], and [`HTTP`][]
 [`ReadableStream`]: https://nodejs.org/api/stream.html#stream_class_stream_readable
 [`rawHeaders`]: https://nodejs.org/api/http.html#http_message_rawheaders
 [`Buffer`]: https://nodejs.org/api/buffer.html
+[`node:stream/consumers`]: https://nodejs.org/api/webstreams.html#utility-consumers
 [`concat-stream`]: https://www.npmjs.com/package/concat-stream
 [`body`]: https://www.npmjs.com/package/body
 [`npm`]: https://www.npmjs.com
