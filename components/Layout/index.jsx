@@ -8,6 +8,7 @@ import NavBar from '../Navigation';
 import MetaBar from '../Metabar';
 import SideBar from '../Sidebar';
 import Footer from '../Footer';
+import ArticleNavigation from '../ArticleNavigation';
 
 /**
  * @typedef {Object} Props
@@ -20,27 +21,32 @@ import Footer from '../Footer';
 /**
  * @param {Props} props
  */
-export default ({ metadata, headings, readingTime, children }) => (
-  <>
-    <Banner />
-    <Analytics basePath="/learn/_vercel" />
-    <SpeedInsights basePath="/learn/_vercel" />
-    <NavBar metadata={metadata} />
-    <Article>
-      <SideBar pathname={`/learn${metadata.path.replace('/index', '')}`} />
-      <div>
+export default ({ metadata, headings, readingTime, children }) => {
+  const pathname = `/learn${metadata.path.replace('/index', '')}`;
+
+  return (
+    <>
+      <Banner />
+      <Analytics basePath="/learn/_vercel" />
+      <SpeedInsights basePath="/learn/_vercel" />
+      <NavBar metadata={metadata} />
+      <Article>
+        <SideBar pathname={pathname} />
         <div>
-          <TableOfContents headings={headings} summaryTitle="On this page" />
-          <br />
-          <main>{children}</main>
+          <div>
+            <TableOfContents headings={headings} summaryTitle="On this page" />
+            <br />
+            <main>{children}</main>
+            <ArticleNavigation pathname={pathname} />
+          </div>
+          <MetaBar
+            metadata={metadata}
+            headings={headings}
+            readingTime={readingTime}
+          />
         </div>
-        <MetaBar
-          metadata={metadata}
-          headings={headings}
-          readingTime={readingTime}
-        />
-      </div>
-    </Article>
-    <Footer metadata={metadata} />
-  </>
-);
+      </Article>
+      <Footer metadata={metadata} />
+    </>
+  );
+};
