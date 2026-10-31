@@ -30,11 +30,6 @@
       "link": "https://github.com/nodejs/node/blob/main/CONTRIBUTING.md",
       "text": "Contribute",
       "target": "_blank"
-    },
-    {
-      "link": "https://training.linuxfoundation.org/openjs/",
-      "text": "Courses",
-      "target": "_blank"
     }
   ],
   "footer": {
@@ -141,6 +136,10 @@
         {
           "link": "/learn/getting-started/an-introduction-to-the-npm-package-manager",
           "label": "An introduction to the npm package manager"
+        },
+        {
+          "link": "/learn/getting-started/node-version-managers",
+          "label": "Node version managers"
         },
         {
           "link": "/learn/getting-started/ecmascript-2015-es6-and-beyond",

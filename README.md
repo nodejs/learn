@@ -33,3 +33,7 @@ conducted at the 2025 Cambridge Node.js Collaborators' Summit.
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+This repository is licensed under the [MIT License](LICENSE).
