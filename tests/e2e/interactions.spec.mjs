@@ -3,6 +3,8 @@ import { test, expect } from '@playwright/test';
 import { waitForIsland } from './helpers.mjs';
 
 const ARTICLE = '/learn/getting-started/introduction-to-nodejs';
+const EVENT_LOOP_ARTICLE =
+  '/learn/asynchronous-work/event-loop-timers-and-nexttick';
 
 /**
  * The theme is applied in an effect after the menu item is clicked, so use a
@@ -52,6 +54,63 @@ test.describe('Navigation', () => {
 
     await expect(page).toHaveURL(new RegExp(`${href}$`));
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  });
+
+  test('renders previous and next article links in sidebar order', async ({
+    page,
+  }) => {
+    await page.goto(EVENT_LOOP_ARTICLE);
+
+    const navigation = page.getByRole('navigation', {
+      name: 'Article navigation',
+    });
+    const previous = navigation.getByRole('link', { name: /Previous/ });
+    const next = navigation.getByRole('link', { name: /Next/ });
+
+    await expect(previous).toContainText(
+      'Overview of Blocking vs Non-Blocking'
+    );
+    await expect(previous).toHaveAttribute(
+      'href',
+      '/learn/asynchronous-work/overview-of-blocking-vs-non-blocking'
+    );
+    await expect(next).toContainText('The Node.js Event Emitter');
+    await expect(next).toHaveAttribute(
+      'href',
+      '/learn/asynchronous-work/the-nodejs-event-emitter'
+    );
+  });
+
+  test('continues article navigation across sidebar groups', async ({
+    page,
+  }) => {
+    await page.goto('/learn/asynchronous-work/dont-block-the-event-loop');
+
+    const navigation = page.getByRole('navigation', {
+      name: 'Article navigation',
+    });
+    const next = navigation.getByRole('link', { name: /Next/ });
+
+    await expect(next).toContainText('Comparing Node.js concurrency models');
+    await expect(next).toHaveAttribute(
+      'href',
+      '/learn/concurrency/comparing-nodejs-concurrency-models'
+    );
+  });
+
+  test('uses leaf article order for nested sidebar sections', async ({
+    page,
+  }) => {
+    await page.goto('/learn/diagnostics/memory');
+
+    const navigation = page.getByRole('navigation', {
+      name: 'Article navigation',
+    });
+    const previous = navigation.getByRole('link', { name: /Previous/ });
+    const next = navigation.getByRole('link', { name: /Next/ });
+
+    await expect(previous).toContainText('User Journey');
+    await expect(next).toContainText('Understanding and Tuning Memory');
   });
 
   test('unknown pages respond with 404', async ({ page }) => {
@@ -122,6 +181,46 @@ test.describe('Small screens', () => {
     await page.keyboard.press('Enter');
 
     await expect(page).toHaveURL(new RegExp(`${ARTICLE}$`));
+  });
+
+  test('the first article shows next without an empty mobile slot', async ({
+    page,
+  }) => {
+    await page.goto(ARTICLE);
+
+    const navigation = page.getByRole('navigation', {
+      name: 'Article navigation',
+    });
+    await navigation.scrollIntoViewIfNeeded();
+
+    await expect(
+      navigation.getByRole('link', { name: /Previous/ })
+    ).toHaveCount(0);
+    await expect(navigation.getByRole('link', { name: /Next/ })).toContainText(
+      'How much JavaScript do you need to know to use Node.js?'
+    );
+    await expect(navigation.locator(':scope > div:empty')).toBeHidden();
+  });
+
+  test('article navigation moves to the next article from the bottom', async ({
+    page,
+  }) => {
+    await page.goto(EVENT_LOOP_ARTICLE);
+
+    const navigation = page.getByRole('navigation', {
+      name: 'Article navigation',
+    });
+    await navigation.scrollIntoViewIfNeeded();
+
+    const next = navigation.getByRole('link', { name: /Next/ });
+    await expect(next).toBeVisible();
+    await expect(next).toContainText('The Node.js Event Emitter');
+
+    await next.click();
+
+    await expect(page).toHaveURL(
+      /\/learn\/asynchronous-work\/the-nodejs-event-emitter$/
+    );
   });
 
   test('the menu button reveals the site links', async ({ page }) => {
