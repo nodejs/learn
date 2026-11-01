@@ -30,7 +30,7 @@
     "typescript-eslint": "^8.72.1"
   },
   "dependencies": {
-    "@node-core/ui-components": "^1.8.0",
+    "@node-core/ui-components": "^1.8.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0"
   },
