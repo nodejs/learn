@@ -19,4 +19,9 @@ updates:
       prefix: meta
     cooldown:
       default-days: 3
+    groups:
+      doc-kit:
+        patterns:
+          - '@doc-kit/*'
+          - '@node-core/doc-kit'
     open-pull-requests-limit: 10
