@@ -1,151 +1,554 @@
----
-authors: flaviocopes, MylesBorins, LaRuaNa, amiller-gh, ahmadawais, ovflowd
----
-
 # JavaScript Asynchronous Programming and Callbacks
 
-## Asynchronicity in Programming Languages
+## 1. What Is Asynchronous Programming?
 
-Computers are asynchronous by design.
+**Asynchronous programming** allows a program to start a task that may take some time to complete without stopping the rest of the program from running.
 
-Asynchronous means that things can happen independently of the main program flow.
+For example, imagine your program needs to download data from a server. The program does not need to sit and wait doing nothing until the server responds. It can continue with other work and handle the response when it arrives.
 
-In the current consumer computers, every program runs for a specific time slot and then it stops its execution to let another program continue their execution. This thing runs in a cycle so fast that it's impossible to notice. We think our computers run many programs simultaneously, but this is an illusion (except on multiprocessor machines).
+### Synchronous vs Asynchronous
 
-Programs internally use _interrupts_, a signal that's emitted to the processor to gain the attention of the system.
-
-Let's not go into the internals of this now, but just keep in mind that it's normal for programs to be asynchronous and halt their execution until they need attention, allowing the computer to execute other things in the meantime. When a program is waiting for a response from the network, it cannot halt the processor until the request finishes.
-
-Normally, programming languages are synchronous and some provide a way to manage asynchronicity in the language or through libraries. C, Java, C#, PHP, Go, Ruby, Swift, and Python are all synchronous by default. Some of them handle async operations by using threads, spawning a new process.
-
-## JavaScript
-
-JavaScript is **synchronous** by default and is single threaded. This means that code cannot create new threads and run in parallel.
-
-Lines of code are executed in series, one after another, for example:
+**Synchronous** code runs one operation at a time and waits for each operation to finish before moving to the next.
 
 ```js
-const a = 1;
-const b = 2;
-const c = a * b;
+console.log("First");
+console.log("Second");
+console.log("Third");
+```
+
+Output:
+
+```text
+First
+Second
+Third
+```
+
+Each statement runs in order.
+
+**Asynchronous** code can start an operation and continue executing other code while waiting for the operation to complete.
+
+```js
+console.log("First");
+
+setTimeout(() => {
+  console.log("Second");
+}, 2000);
+
+console.log("Third");
+```
+
+Output:
+
+```text
+First
+Third
+Second
+```
+
+The timer waits for approximately 2 seconds before its callback runs, while JavaScript continues executing the next statement.
+
+---
+
+# 2. Is JavaScript Synchronous or Asynchronous?
+
+JavaScript is **synchronous and single-threaded by default**.
+
+This means JavaScript executes one piece of JavaScript code at a time on its main thread.
+
+For example:
+
+```js
+const a = 10;
+const b = 20;
+const c = a + b;
+
 console.log(c);
-doSomething();
 ```
 
-But JavaScript was born inside the browser, its main job, in the beginning, was to respond to user actions, like `onClick`, `onMouseOver`, `onChange`, `onSubmit` and so on. How could it do this with a synchronous programming model?
+The statements execute in order:
 
-The answer was in its environment. The **browser** provides a way to do it by providing a set of APIs that can handle this kind of functionality.
+```text
+10 + 20
+30
+```
 
-More recently, Node.js introduced a non-blocking I/O environment to extend this concept to file access, network calls and so on.
+JavaScript itself does not normally create additional JavaScript threads for every task.
 
-## Callbacks
+However, JavaScript can perform **asynchronous operations** because the environment where JavaScript runs provides additional APIs.
 
-You can't know when a user is going to click a button. So, you **define an event handler for the click event**. This event handler accepts a function, which will be called when the event is triggered:
+For example:
+
+* Browsers provide Web APIs.
+* Node.js provides APIs for files, networking, timers, and other operations.
+
+These environments allow JavaScript to start operations that can finish later.
+
+---
+
+# 3. Why Do We Need Asynchronous Programming?
+
+Many operations take time to complete.
+
+Examples include:
+
+* Downloading data from a server
+* Reading a file
+* Waiting for a timer
+* Sending a network request
+* Waiting for a user to click a button
+* Accessing a database
+
+If JavaScript had to wait for every slow operation to finish before doing anything else, applications could become unresponsive.
+
+Asynchronous programming allows JavaScript to remain responsive while these operations are being completed.
+
+---
+
+# 4. Callbacks
+
+A **callback** is a function that is passed to another function so that it can be executed later.
+
+For example:
 
 ```js
-document.getElementById('button').addEventListener('click', () => {
-  // item clicked
+function greet(name, callback) {
+  console.log(`Hello ${name}`);
+  callback();
+}
+
+function finished() {
+  console.log("Greeting finished.");
+}
+
+greet("Moses", finished);
+```
+
+Output:
+
+```text
+Hello Moses
+Greeting finished.
+```
+
+Here:
+
+```js
+finished
+```
+
+is passed as an argument to `greet()`.
+
+The `greet()` function later calls it:
+
+```js
+callback();
+```
+
+Therefore, `finished` is a **callback function**.
+
+---
+
+# 5. Callbacks and Browser Events
+
+Callbacks are commonly used with browser events.
+
+For example:
+
+```js
+const button = document.getElementById("button");
+
+button.addEventListener("click", () => {
+  console.log("Button clicked!");
 });
 ```
 
-This is the so-called **callback**.
-
-A callback is a simple function that's passed as a value to another function, and will only be executed when the event happens. We can do this because JavaScript has first-class functions, which can be assigned to variables and passed around to other functions (called **higher-order functions**)
-
-It's common to wrap all your client code in a `load` event listener on the `window` object, which runs the callback function only when the page is ready:
+The function:
 
 ```js
-window.addEventListener('load', () => {
-  // window loaded
-  // do what you want
+() => {
+  console.log("Button clicked!");
+}
+```
+
+is a callback.
+
+It is not executed immediately.
+
+Instead, the browser executes it when the user clicks the button.
+
+### Another Example
+
+```js
+window.addEventListener("load", () => {
+  console.log("The page has finished loading.");
 });
 ```
 
-Callbacks are used everywhere, not just in DOM events.
+The callback runs after the page's load event occurs.
 
-One common example is by using timers:
+---
+
+# 6. Callbacks and Timers
+
+Callbacks are also used with timers.
 
 ```js
 setTimeout(() => {
-  // runs after 2 seconds
+  console.log("2 seconds have passed.");
 }, 2000);
 ```
 
-XHR requests also accept a callback, in this example by assigning a function to a property that will be called when a particular event occurs (in this case, the state of the request changes):
+The second argument:
+
+```js
+2000
+```
+
+means approximately 2000 milliseconds, or 2 seconds.
+
+The function:
+
+```js
+() => {
+  console.log("2 seconds have passed.");
+}
+```
+
+is the callback.
+
+The callback is executed after the timer has finished.
+
+---
+
+# 7. Callbacks with Network Requests
+
+Callbacks can also be used with network operations.
+
+For example, the older `XMLHttpRequest` API uses callbacks:
 
 ```js
 const xhr = new XMLHttpRequest();
+
 xhr.onreadystatechange = () => {
   if (xhr.readyState === 4) {
     if (xhr.status === 200) {
       console.log(xhr.responseText);
     } else {
-      console.error('error');
+      console.error("Request failed.");
     }
   }
 };
-xhr.open('GET', 'https://yoursite.com');
+
+xhr.open("GET", "https://example.com/data");
 xhr.send();
 ```
 
-### Handling errors in callbacks
+The request takes time to complete.
 
-How do you handle errors with callbacks? One very common strategy is to use what Node.js adopted: the first parameter in any callback function is the error object: **error-first callbacks**
+Instead of stopping the entire program while waiting, JavaScript continues running and later executes the callback when the request state changes.
 
-If there is no error, the object is `null`. If there is an error, it contains some description of the error and other information.
+---
 
-```cjs
-const fs = require('node:fs');
+# 8. Error-First Callbacks in Node.js
 
-fs.readFile('/file.json', (err, data) => {
-  if (err) {
-    // handle error
-    console.log(err);
-    return;
-  }
+Node.js traditionally uses a pattern called an **error-first callback**.
 
-  // no errors, process data
-  console.log(data);
-});
-```
+The callback normally receives the error as its first argument.
 
-```mjs
-import fs from 'node:fs';
-
-fs.readFile('/file.json', (err, data) => {
-  if (err) {
-    // handle error
-    console.log(err);
-    return;
-  }
-
-  // no errors, process data
-  console.log(data);
-});
-```
-
-### The problem with callbacks
-
-Callbacks are great for simple cases!
-
-However every callback adds a level of nesting, and when you have lots of callbacks, the code starts to be complicated very quickly:
+Example:
 
 ```js
-window.addEventListener('load', () => {
-  document.getElementById('button').addEventListener('click', () => {
+const fs = require("node:fs");
+
+fs.readFile("file.txt", (err, data) => {
+  if (err) {
+    console.error("Error:", err);
+    return;
+  }
+
+  console.log(data.toString());
+});
+```
+
+The general structure is:
+
+```js
+function callback(err, data) {
+  // handle result
+}
+```
+
+If an error occurs:
+
+```js
+err
+```
+
+contains information about the error.
+
+If the operation succeeds, `err` is usually `null`.
+
+This pattern makes it possible to handle both successful and unsuccessful operations.
+
+---
+
+# 9. The Problem with Too Many Callbacks
+
+Callbacks are useful, but using many callbacks inside one another can make code difficult to read and maintain.
+
+For example:
+
+```js
+window.addEventListener("load", () => {
+  document.getElementById("button").addEventListener("click", () => {
     setTimeout(() => {
-      items.forEach(item => {
-        // your code here
+      items.forEach((item) => {
+        console.log(item);
       });
     }, 2000);
   });
 });
 ```
 
-This is just a simple 4-levels code, but I've seen much more levels of nesting and it's not fun.
+Notice how the code becomes increasingly indented.
 
-How do we solve this?
+With more asynchronous operations, this can become much worse:
 
-### Alternatives to callbacks
+```js
+doSomething((result1) => {
+  doSomethingElse(result1, (result2) => {
+    doAnotherThing(result2, (result3) => {
+      doSomethingAgain(result3, (result4) => {
+        console.log(result4);
+      });
+    });
+  });
+});
+```
 
-Starting with ES6, JavaScript introduced several features that help us with asynchronous code that do not involve using callbacks: Promises (ES6) and Async/Await (ES2017).
+This pattern is often called **callback hell** or the **pyramid of doom**.
+
+The main problems are:
+
+* Difficult-to-read code
+* Deep nesting
+* Difficult error handling
+* Difficult maintenance
+* Difficult debugging
+
+---
+
+# 10. Higher-Order Functions and Callbacks
+
+A function that accepts another function as an argument or returns a function is called a **higher-order function**.
+
+For example:
+
+```js
+function processUser(name, callback) {
+  console.log(`Processing ${name}...`);
+  callback();
+}
+
+processUser("Moses", () => {
+  console.log("User processed.");
+});
+```
+
+Here:
+
+* `processUser()` is a higher-order function.
+* The function passed to `processUser()` is a callback.
+
+JavaScript supports this because **functions are first-class values**.
+
+This means functions can be:
+
+* Stored in variables
+* Passed as arguments
+* Returned from other functions
+* Stored in objects or arrays
+
+---
+
+# 11. How JavaScript Handles Asynchronous Operations
+
+A simplified way to understand asynchronous JavaScript is:
+
+```text
+JavaScript Code
+      ↓
+Call Stack
+      ↓
+Web APIs / Node.js APIs
+      ↓
+Task completes
+      ↓
+Callback Queue
+      ↓
+Event Loop
+      ↓
+Call Stack
+      ↓
+Callback executes
+```
+
+For example:
+
+```js
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timer finished");
+}, 2000);
+
+console.log("End");
+```
+
+The output is:
+
+```text
+Start
+End
+Timer finished
+```
+
+The important idea is that JavaScript does not stop executing the entire program while the timer is waiting.
+
+---
+
+# 12. Event Loop
+
+The **event loop** is a mechanism that helps JavaScript handle asynchronous operations while JavaScript itself remains single-threaded.
+
+A simplified process is:
+
+1. JavaScript executes code on the call stack.
+2. An asynchronous operation is started.
+3. The environment handles the operation.
+4. JavaScript continues executing other code.
+5. When the operation is ready, its callback is placed into an appropriate queue.
+6. The event loop checks whether the call stack is empty.
+7. The callback is eventually moved to the call stack.
+8. JavaScript executes the callback.
+
+Understanding the **call stack, queues, and event loop** is important for understanding asynchronous JavaScript.
+
+---
+
+# 13. Modern Alternatives to Callbacks
+
+Modern JavaScript provides better ways to organize asynchronous operations.
+
+The main approaches are:
+
+### 1. Callbacks
+
+```js
+setTimeout(() => {
+  console.log("Finished");
+}, 1000);
+```
+
+### 2. Promises
+
+```js
+const promise = new Promise((resolve, reject) => {
+  resolve("Success!");
+});
+
+promise.then((result) => {
+  console.log(result);
+});
+```
+
+### 3. Async/Await
+
+```js
+async function run() {
+  const result = await promise;
+  console.log(result);
+}
+
+run();
+```
+
+Promises were introduced in **ES2015 (ES6)**, while `async`/`await` was introduced in **ES2017**.
+
+---
+
+# 14. Key Terms to Remember
+
+| Term                      | Meaning                                                         |
+| ------------------------- | --------------------------------------------------------------- |
+| **Synchronous**           | Operations execute in order and wait for each other             |
+| **Asynchronous**          | Operations can complete later without blocking the current flow |
+| **Callback**              | A function passed to another function to be executed later      |
+| **Higher-order function** | A function that accepts or returns another function             |
+| **Call Stack**            | Keeps track of currently executing JavaScript functions         |
+| **Event Loop**            | Coordinates asynchronous callbacks with the call stack          |
+| **Promise**               | Represents the eventual result of an asynchronous operation     |
+| **async**                 | Declares a function that works with promises                    |
+| **await**                 | Waits for a promise to settle inside an async function          |
+| **Callback Hell**         | Excessive nesting of callbacks                                  |
+
+---
+
+# 15. Simple Example to Remember
+
+Think of ordering food at a restaurant.
+
+### Synchronous
+
+You order food and stand at the kitchen waiting until the food is prepared.
+
+```text
+Order food
+     ↓
+Wait
+     ↓
+Food ready
+     ↓
+Continue
+```
+
+### Asynchronous
+
+You order food, receive a number, and sit down.
+
+```text
+Order food
+     ↓
+Sit and do something else
+     ↓
+Food becomes ready
+     ↓
+You are notified
+     ↓
+Collect food
+```
+
+The notification is similar to a **callback**.
+
+---
+
+# Summary
+
+JavaScript executes JavaScript code **synchronously on a single main thread**, but it can handle asynchronous operations through capabilities provided by its host environment, such as browsers and Node.js.
+
+**Callbacks** were one of the original and simplest ways to work with asynchronous operations.
+
+However, too many nested callbacks can make code difficult to understand and maintain. Modern JavaScript therefore provides **Promises** and **async/await**, which make asynchronous code easier to organize.
+
+### The progression to remember:
+
+```text
+Callbacks
+    ↓
+Promises
+    ↓
+Async / Await
+```
+
+Understanding callbacks is important because they form the foundation for understanding how JavaScript handles asynchronous programming.
