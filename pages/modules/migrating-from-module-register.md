@@ -162,7 +162,7 @@ Two options keep the asynchronous work off your main thread.
 
 ### Keep your hooks module as it is
 
-[`module-register-ponyfill`](https://github.com/joyeecheung/module-register-ponyfill) provides `register()` on top of `registerHooks()`, a worker thread and `Atomics`, so an existing hooks module works unchanged. Install it, then replace `import { register } from 'node:module'` with an import from the package:
+[`module-register-ponyfill`](https://github.com/joyeecheung/module-register-ponyfill) provides `register()` on top of `registerHooks()`, a worker thread and `Atomics`, so an existing hooks module usually works unchanged. Install it, then replace `import { register } from 'node:module'` with an import from the package:
 
 ```js
 // register.mjs
@@ -171,9 +171,11 @@ import { register } from 'module-register-ponyfill';
 register('./hooks.mjs', import.meta.url);
 ```
 
+It doesn’t reproduce every detail of the native implementation; see its [known divergences](https://github.com/joyeecheung/module-register-ponyfill#known-divergences-from-native-moduleregister). The most likely to affect a migration: earlier `register()` calls no longer affect how later hooks modules are loaded. For example, registering a hook that enables TypeScript and then a `.ts` hooks module worked natively but won’t work with the ponyfill. If your hooks bootstrap each other this way, migrate those to `registerHooks()` instead.
+
 ### Build a bridge with `everysync`
 
-[`everysync`](https://github.com/mcollina/everysync) lets synchronous code call an asynchronous function that runs in a worker thread: the caller blocks until the worker’s promise settles. That is what a synchronous `load` hook needs to fetch modules from a URL, for example.
+[`everysync`](https://github.com/mcollina/everysync) lets synchronous code call an asynchronous function that runs in a worker thread: the caller blocks until the worker’s promise settles or a timeout expires. That is what a synchronous `load` hook needs to fetch modules from a URL, for example.
 
 First, the worker exposes the asynchronous work:
 
@@ -209,7 +211,8 @@ const worker = new Worker(new URL('./fetch-worker.mjs', import.meta.url), {
   execArgv: [], // Don't re-run this file (via --import) inside the worker.
 });
 worker.unref(); // Don't let the worker keep the process alive.
-const { fetchText } = makeSync(buffer);
+// The default timeout is 1 second per call, so allow longer for the network.
+const { fetchText } = makeSync(buffer, { timeout: 30_000 });
 
 registerHooks({
   resolve(specifier, context, nextResolve) {
@@ -231,7 +234,7 @@ registerHooks({
 node --import ./register.mjs app.mjs
 ```
 
-Two details matter. Pass `execArgv: []` when you preload the registration file with `--import`, because workers inherit your flags and would otherwise run `register.mjs` themselves and start another worker (`makeSync()` then fails with “The initialization timed out”). And remember that the calling thread is blocked while the worker waits on the network, so this suits tooling and development more than hot paths.
+Two details matter. Pass `execArgv: []` when you preload the registration file with `--import`, because workers inherit your flags and would otherwise run `register.mjs` themselves and start another worker (`makeSync()` then fails with “The initialization timed out”). And remember that the calling thread is blocked while the worker waits on the network, so this suits tooling and development more than hot paths. `everysync` gives up after one second by default (`The response timed out after 1000ms`), so choose a `timeout` that suits your slowest request.
 
 ### Hooks now apply to `require()` too
 
@@ -258,7 +261,7 @@ const { default: greeting } = await import('virtual:greeting');
 ## Troubleshooting
 
 - `bad option: --loader` or `bad option: --experimental-loader`: see [Replacing `--loader`](#replacing---loader-and---experimental-loader).
-- `SyntaxError: The requested module 'node:module' does not provide an export named 'register'`, or `module.register is not a function`: switch to `registerHooks()`, as described [above](#rewriting-your-hooks).
+- `ERR_MODULE_REGISTER_REMOVED: module.register() has been removed (DEP0205)`: `module.register()` now throws. Switch to `registerHooks()`, as described [above](#rewriting-your-hooks).
 - A hook that worked before now fails with `Promise` or `await` errors: it is probably returning a promise from a synchronous hook. Remove `async`.
 
 For the full hook reference, including the `context` objects and every return value, see the [`module` API documentation](https://nodejs.org/api/module.html#customization-hooks).
