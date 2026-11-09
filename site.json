@@ -351,6 +351,10 @@
         {
           "link": "/learn/modules/abi-stability",
           "label": "ABI Stability"
+        },
+        {
+          "link": "/learn/modules/migrating-from-module-register",
+          "label": "Migrating from module.register()"
         }
       ]
     },
