@@ -10,6 +10,20 @@
       rel="canonical"
       href="https://nodejs.org/learn${metadata.path.replace('/index', '')}"
     />
+    <style>
+      is-land[data-island-name='Sidebar'] {
+        display: flex;
+        flex-direction: column;
+      }
+      is-land[data-island-name='Sidebar'] > aside {
+        flex: 1 0 auto;
+      }
+      @media (min-width: 896px) {
+        div[class] > is-land[data-island-name='Sidebar'] {
+          height: 100svh;
+        }
+      }
+    </style>
 
     <!-- The favicon, description and og: tags come from the preset's head -->
     ${preloads} ${assets} ${head}
