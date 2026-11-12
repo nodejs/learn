@@ -1,3 +1,4 @@
+import { useLayoutEffect } from 'react';
 import SideBar from '@node-core/ui-components/Containers/Sidebar';
 import withIsland from '@doc-kit/generator-react/html/ui/islands/withIsland.jsx';
 import { sidebar } from '../../site.json' with { type: 'json' };
@@ -16,14 +17,39 @@ const PrefetchLink = props => <a {...props} rel="prefetch" />;
  *
  * @param {{ pathname: string }} props
  */
-const Sidebar = ({ pathname }) => (
-  <SideBar
-    pathname={pathname}
-    groups={sidebar}
-    onSelect={redirect}
-    as={PrefetchLink}
-    title="Navigation"
-  />
-);
+const Sidebar = ({ pathname }) => {
+  // Each navigation is a full page load, so the sidebar always starts at the
+  // top. Scroll the active link into view (stateless, no storage needed).
+  useLayoutEffect(() => {
+    const active = document.querySelector(`aside a[href="${pathname}"]`);
+    const aside = active?.closest('aside');
+
+    if (!aside || !active) {
+      return;
+    }
+
+    const asideRect = aside.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+
+    // Only scroll if the active link is outside the visible area
+    if (
+      activeRect.top < asideRect.top ||
+      activeRect.bottom > asideRect.bottom
+    ) {
+      aside.scrollTop +=
+        activeRect.top - asideRect.top - aside.clientHeight / 2;
+    }
+  }, [pathname]);
+
+  return (
+    <SideBar
+      pathname={pathname}
+      groups={sidebar}
+      onSelect={redirect}
+      as={PrefetchLink}
+      title="Navigation"
+    />
+  );
+};
 
 export default withIsland(Sidebar, { name: 'Sidebar', on: { idle: true } });
