@@ -23,21 +23,31 @@ const Sidebar = ({ pathname }) => {
   useLayoutEffect(() => {
     const active = document.querySelector(`aside a[href="${pathname}"]`);
     const aside = active?.closest('aside');
+    const scroller =
+      aside && aside.scrollHeight > aside.clientHeight
+        ? aside
+        : aside?.parentElement;
 
-    if (!aside || !active) {
+    if (
+      !scroller ||
+      !active ||
+      scroller.scrollHeight <= scroller.clientHeight
+    ) {
       return;
     }
 
-    const asideRect = aside.getBoundingClientRect();
+    console.log(pathname);
+
+    const scrollerRect = scroller.getBoundingClientRect();
     const activeRect = active.getBoundingClientRect();
 
     // Only scroll if the active link is outside the visible area
     if (
-      activeRect.top < asideRect.top ||
-      activeRect.bottom > asideRect.bottom
+      activeRect.top < scrollerRect.top ||
+      activeRect.bottom > scrollerRect.bottom
     ) {
-      aside.scrollTop +=
-        activeRect.top - asideRect.top - aside.clientHeight / 2;
+      scroller.scrollTop +=
+        activeRect.top - scrollerRect.top - scroller.clientHeight / 2;
     }
   }, [pathname]);
 
