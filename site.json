@@ -353,8 +353,8 @@
           "label": "ABI Stability"
         },
         {
-          "link": "/learn/modules/migrating-from-module-register",
-          "label": "Migrating from module.register()"
+          "link": "/learn/modules/using-customization-hooks",
+          "label": "Using module customization hooks"
         }
       ]
     },
