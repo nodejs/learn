@@ -312,6 +312,10 @@
           "label": "Introduction to TypeScript"
         },
         {
+          "link": "/learn/typescript/type-stripping",
+          "label": "Type stripping in Node.js"
+        },
+        {
           "link": "/learn/typescript/run-natively",
           "label": "Running TypeScript Natively"
         },
