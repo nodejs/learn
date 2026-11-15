@@ -6,12 +6,12 @@ authors: GeoffreyBooth
 
 Module customization hooks let you change how Node.js resolves and loads modules, without touching the modules themselves. A `resolve` hook decides what a specifier such as `'./app'` or `'lodash'` points to, and a `load` hook decides what source code and format the resulting URL has. With them you can:
 
-- add support for file types Node.js doesn’t load natively, such as JSX, SVG, CoffeeScript or `.txt` files;
-- serve virtual modules that don’t exist on disk;
-- redirect or alias specifiers;
-- mock modules in tests.
+- add support for file types Node.js doesn’t load natively, such as JSX, SVG or CoffeeScript
+- serve virtual modules that don’t exist on disk
+- redirect or alias specifiers
+- mock modules in tests
 
-Hooks are registered with [`module.registerHooks()`](https://nodejs.org/api/module.html#moduleregisterhooksoptions), which is available in Node.js 22.15.0 and later (and 23.5.0 and later). It takes synchronous hooks that run on the same thread that loads your modules. Some hooks need to wait on something asynchronous, like a network request; [that case is covered below](#asynchronous-work).
+Hooks are registered with [`module.registerHooks()`](https://nodejs.org/api/module.html#moduleregisterhooksoptions), which is available in Node.js 22.15.0 and later. It takes synchronous hooks that run on the same thread as your modules. Some hooks need to wait on something asynchronous, like a network request; [that case is covered below](#asynchronous-work).
 
 For the full hook reference, including the `context` objects and every return value, see the [`module` API documentation](https://nodejs.org/api/module.html#customization-hooks).
 
@@ -19,7 +19,7 @@ For the full hook reference, including the `context` objects and every return va
 
 ### What is “synchronous work”
 
-A hook does synchronous work if it can compute its result and return it without waiting. Rewriting a specifier, matching a file extension, reading a file with `readFileSync()` and transforming source text with a synchronous compiler all qualify. Most hooks fall into this category.
+Most hooks work falls into this category. Perhaps best described by what it isn’t: no async/await, no promises, no postMessage, etc. Rewriting a specifier, matching a file extension, reading a file with `readFileSync()` and transforming source text with a synchronous compiler all qualify.
 
 ### How to do it with `module.registerHooks()`
 
@@ -32,7 +32,7 @@ import { readFileSync } from 'node:fs';
 
 registerHooks({
   load(url, context, nextLoad) {
-    if (url.endsWith('.txt')) {
+    if (new URL(url).searchParams.has('raw')) {
       const text = readFileSync(new URL(url), 'utf8');
       return {
         format: 'module',
@@ -47,18 +47,22 @@ registerHooks({
 
 ```js
 // app.js
-import greeting from './greeting.txt';
+import greeting from './greeting.txt?raw';
 
 console.log(greeting); // The contents of greeting.txt
 ```
 
+This hook makes any import that ends in `?raw` return the file’s contents as a string, a convention borrowed from [Vite](https://vite.dev/guide/assets#importing-asset-as-string). It works for any file type, so `./styles.css?raw` would work too.
+
 Run your app with the registration file preloaded, so that the hooks are in place before any of your modules load:
 
-```bash
+```sh
 node --import ./register.js app.js
 ```
 
 A `resolve` hook works the same way: it receives `(specifier, context, nextResolve)`, and either returns its own `{ url, shortCircuit: true }` or calls `nextResolve()`. You can also put the hooks in their own file and `import` them into the registration file.
+
+The examples below match files with `url.endsWith('.jsx')` or similar to keep them short, but that isn’t robust enough for real use: hooks often pass information along in a query string, which comes after the file extension (`Greeting.jsx?v=2`), so a check like `endsWith('.jsx')` would miss it. Parse the URL, as the hook above does, and check its `pathname` instead.
 
 Hooks can also run a compiler synchronously. This one makes `.jsx` files importable, using [esbuild](https://esbuild.github.io/)’s synchronous `transformSync()` to compile them:
 
@@ -100,7 +104,7 @@ import { Greeting } from './Greeting.jsx';
 console.log(renderToStaticMarkup(<Greeting name="world" />)); // <h1>Hello, world!</h1>
 ```
 
-```bash
+```sh
 node --import ./register.js app.jsx
 ```
 
@@ -168,7 +172,7 @@ Hooks run for `import`, `require()` and `createRequire()`, so they see CommonJS 
 
 Hooks registered with `registerHooks()` apply only to the thread that registered them. To use them in worker threads, either call `registerHooks()` in each worker, or register them in a file preloaded with `--import` (or `--require`); workers inherit those flags through `process.execArgv`:
 
-```bash
+```sh
 node --import ./register.js app.js
 ```
 
@@ -179,14 +183,16 @@ Hooks only affect modules loaded after they are registered. Preloading with `--i
 ```js
 import './register.js';
 
-const { default: greeting } = await import('./greeting.txt');
+const { default: greeting } = await import('./greeting.txt?raw');
 ```
 
 ## Asynchronous work
 
 ### What is “asynchronous work”
 
-A hook does asynchronous work if it has to wait for something before it can return, such as a network request or a call into a library that only offers a promise-based API. `registerHooks()` can’t wait on a promise: its hooks must return their results directly. There are two ways to get that work done anyway, both of which run it off your main thread.
+This tends to be more edge-case. A hook does asynchronous work if it has to wait for something before it can return, such as a network request or a call into a library that runs concurrently (exposing that via promise-based APIs). `registerHooks()` can’t wait on a promise—its hooks must return their results directly. There are two ways to get that work done anyway, both of which run it off your main thread.
+
+Be aware that this can get complicated. Making asynchronous work look synchronous means blocking the thread that loads your modules until another thread responds, so a worker that ends up waiting on the blocked thread (directly or indirectly) causes a deadlock, and a worker that never settles hangs your application. These problems, along with livelocks, can be hard to diagnose. If you can do the work synchronously, prefer that.
 
 ### Write asynchronous hooks with `module-register-ponyfill`
 
@@ -223,7 +229,7 @@ import { register } from 'module-register-ponyfill';
 register('./hooks.js', import.meta.url);
 ```
 
-```bash
+```sh
 node --import ./register.js app.js
 ```
 
@@ -288,7 +294,7 @@ registerHooks({
 });
 ```
 
-```bash
+```sh
 node --import ./register.js app.js
 ```
 
@@ -300,7 +306,7 @@ Earlier versions of Node.js had another way to register hooks: `module.register(
 
 If you have code that still uses them, the [`module-register-to-register-hooks`](https://github.com/nodejs/userland-migrations) codemod, one of the [userland migrations](/learn/getting-started/userland-migrations), rewrites the common cases for you. Hooks that do asynchronous work can use the approaches in [Asynchronous work](#asynchronous-work) instead.
 
-If your package has to support versions of Node.js with and without `registerHooks()`, feature-detect it. Check for `registerHooks()` first, then for `module.register()` (which only exists in older versions), and handle versions that have neither:
+If your package has to support versions of Node.js with and without `registerHooks()`, feature-detect it. The snippet below is a simplified sketch: a robust implementation also has to detect whether the hook chain is synchronous or asynchronous, which [`@nodejs-loaders`](https://github.com/nodejs-loaders/nodejs-loaders) handles for you. Check for `registerHooks()` first, then for `module.register()` (which only exists in older versions), and handle versions that have neither:
 
 ```js
 import module from 'node:module';
