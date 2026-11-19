@@ -19,7 +19,38 @@ For the full hook reference, including the `context` objects and every return va
 
 ### What is “synchronous work”
 
-Most hooks work falls into this category. Perhaps best described by what it isn’t: no async/await, no promises, no postMessage, etc. Rewriting a specifier, matching a file extension, reading a file with `readFileSync()` and transforming source text with a synchronous compiler all qualify.
+A hook is synchronous if it knows its result by the time it returns. Rewriting a specifier, matching a file extension, reading a file with `readFileSync()` and transforming source text with a synchronous compiler all qualify. Most hooks work this way:
+
+```js
+// A load hook is a synchronous function and must return an object.
+function load(url, context, nextLoad) {
+  const source = fs.readFileSync(new URL(url), 'utf8');
+  // The result is already known by the time the function returns.
+  return { format: 'module', shortCircuit: true, source };
+}
+```
+
+A hook can’t be synchronous if its result only becomes available later, in a callback or a promise, because the function has already returned by then:
+
+```js
+function load(url, context, nextLoad) {
+  fs.readFile(new URL(url), 'utf8', (err, data) => {
+    // The result is only available in this callback…
+  });
+  // …so it isn’t known yet when the function returns.
+}
+```
+
+```js
+function load(url, context, nextLoad) {
+  fs.promises.readFile(new URL(url), 'utf8').then(data => {
+    // The result is only available in this callback…
+  });
+  // …so it isn’t known yet when the function returns.
+}
+```
+
+For that case, see [asynchronous work](#asynchronous-work) below.
 
 ### How to do it with `module.registerHooks()`
 
@@ -164,10 +195,6 @@ For a collection of robust, ready-made hooks and more examples, see [`@nodejs-lo
 
 ### Things to keep in mind
 
-#### Hooks apply to `require()` too
-
-Hooks run for `import`, `require()` and `createRequire()`, so they see CommonJS modules as well as ES modules. If your hook assumes every module is ESM, check `context.format` or `context.conditions`.
-
 #### Workers don’t inherit hooks
 
 Hooks registered with `registerHooks()` apply only to the thread that registered them. To use them in worker threads, either call `registerHooks()` in each worker, or register them in a file preloaded with `--import` (or `--require`); workers inherit those flags through `process.execArgv`:
@@ -190,11 +217,107 @@ const { default: greeting } = await import('./greeting.txt?raw');
 
 ### What is “asynchronous work”
 
-This tends to be more edge-case. A hook does asynchronous work if it has to wait for something before it can return, such as a network request or a call into a library that runs concurrently (exposing that via promise-based APIs). `registerHooks()` can’t wait on a promise—its hooks must return their results directly. There are two ways to get that work done anyway, both of which run it off your main thread.
+This tends to be more edge-case. A hook does asynchronous work if it has to wait for something before it can return, such as a network request or a call into a library that runs concurrently (exposing that via promise-based APIs). `registerHooks()` can’t wait on a promise—its hooks must return their results directly. To get that work done anyway, do it on a different thread, block the thread that loads your modules until the result is ready, and return the result synchronously.
 
-Be aware that this can get complicated. Making asynchronous work look synchronous means blocking the thread that loads your modules until another thread responds, so a worker that ends up waiting on the blocked thread (directly or indirectly) causes a deadlock, and a worker that never settles hangs your application. These problems, along with livelocks, can be hard to diagnose. If you can do the work synchronously, prefer that.
+Doing the work synchronously is preferable whenever you can: it’s simpler, and it avoids the overhead of communicating between threads.
 
-### Write asynchronous hooks with `module-register-ponyfill`
+### Doing the work on a worker thread
+
+Say a hook needs to fetch a module’s source over the network. Written naively, it would look like this, but `fetch()` and `response.text()` both return promises:
+
+```js
+function getSource(url) {
+  const response = fetch(url); // But fetch is asynchronous!
+  const text = response.text(); // And so is response.text()!
+  return text;
+}
+
+function load(url, context, nextLoad) {
+  return { source: getSource(url), shortCircuit: true, format: 'module' };
+}
+```
+
+Instead, `getSource()` can do the fetching in a worker thread, block on it with [`Atomics.wait()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics/wait) until the worker signals that it’s done, and read the result synchronously with [`receiveMessageOnPort()`](https://nodejs.org/api/worker_threads.html#worker_threadsreceivemessageonportport):
+
+```js
+// register.js
+import { registerHooks } from 'node:module';
+import {
+  MessageChannel,
+  receiveMessageOnPort,
+  Worker,
+} from 'node:worker_threads';
+
+// Fetch the source on a different thread and block until it returns.
+function getSource(url) {
+  const { port1, port2 } = new MessageChannel();
+  const notifyHandle = new Int32Array(new SharedArrayBuffer(4));
+
+  new Worker(
+    `
+    const { workerData } = require('node:worker_threads');
+    const { url, notifyHandle, port2 } = workerData;
+
+    (async () => {
+      try {
+        const response = await fetch(url);
+        port2.postMessage({ text: await response.text() });
+      } catch (error) {
+        port2.postMessage({ error });
+      } finally {
+        // Always wake up the loading thread, even on failure.
+        Atomics.store(notifyHandle, 0, 1);
+        Atomics.notify(notifyHandle, 0);
+      }
+    })();
+    `,
+    {
+      eval: true,
+      workerData: { url, notifyHandle, port2 },
+      transferList: [port2],
+    }
+  );
+
+  // Block until the worker finishes.
+  Atomics.wait(notifyHandle, 0, 0);
+
+  // Retrieve the result synchronously.
+  const { text, error } = receiveMessageOnPort(port1).message;
+  if (error) throw error;
+  return text;
+}
+
+registerHooks({
+  resolve(specifier, context, nextResolve) {
+    if (specifier.startsWith('https://')) {
+      return { url: specifier, shortCircuit: true };
+    }
+    return nextResolve(specifier, context);
+  },
+  load(url, context, nextLoad) {
+    if (url.startsWith('https://')) {
+      return { format: 'module', shortCircuit: true, source: getSource(url) };
+    }
+    return nextLoad(url, context);
+  },
+});
+```
+
+```sh
+node --import ./register.js app.js
+```
+
+Now `app.js` can `import` a module from an `https://` URL.
+
+This starts a new worker for every request, to keep the example short. A hook that handles many requests should start one worker and reuse it.
+
+Blocking is only safe as long as the worker never needs the blocked thread to make progress. If the worker waits for a message from the thread that’s loading your modules, or loads modules that go through the same hooks, both threads end up waiting for each other, and your application hangs. It also hangs if the worker never signals completion, which is why the example signals in a `finally` block. `Atomics.wait()` accepts a timeout as its fourth argument if you want a limit.
+
+### Using a library
+
+Libraries wrap this same idea. For a simple hook like the one above, writing it yourself is usually clearer. For anything more complex, it’s better to write the worker yourself, so that you control how the threads communicate; a library’s preset thread orchestration is a black box, and not being able to see how the threads talk to each other is what tends to cause confusing deadlocks. If you’d rather use one, there are two.
+
+#### `module-register-ponyfill`
 
 [`module-register-ponyfill`](https://github.com/joyeecheung/module-register-ponyfill) lets you write hooks as a module whose `resolve` and `load` functions are `async`. Its `register()` function runs that module on a worker thread, and uses `registerHooks()` and `Atomics` to make the results available to the loader synchronously. Install it with `npm install module-register-ponyfill`, then write the hooks module:
 
@@ -237,7 +360,7 @@ Now `app.js` can `import` a module from an `https://` URL. The hooks module runs
 
 The ponyfill has a few limitations; see its [known divergences](https://github.com/joyeecheung/module-register-ponyfill#known-divergences-from-native-moduleregister). For example, hooks registered by one `register()` call don’t affect how later hooks modules are loaded, so a hook that enables JSX won’t let you write the next hooks module in JSX.
 
-### Build a bridge with `everysync`
+#### `everysync`
 
 [`everysync`](https://github.com/mcollina/everysync) lets synchronous code call an asynchronous function that runs in a worker thread: the caller blocks until the worker’s promise settles or a timeout expires. That is what a synchronous `load` hook needs to fetch modules from a URL, for example.
 
