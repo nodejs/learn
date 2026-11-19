@@ -351,6 +351,10 @@
         {
           "link": "/learn/modules/abi-stability",
           "label": "ABI Stability"
+        },
+        {
+          "link": "/learn/modules/using-customization-hooks",
+          "label": "Using module customization hooks"
         }
       ]
     },
