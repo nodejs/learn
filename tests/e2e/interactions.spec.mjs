@@ -168,7 +168,7 @@ test.describe('Small screens', () => {
     await page.goto('/learn/getting-started/fetch');
 
     // The sidebar collapses into a dropdown that only works once hydrated.
-    await waitForIsland(page, 'Sidebar');
+    await waitForIsland(page, 'SideBar');
     await page.getByRole('combobox', { name: 'Navigation' }).click();
 
     // Radix ignores a selection made in the first moments after the list

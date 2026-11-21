@@ -36,8 +36,6 @@ const Sidebar = ({ pathname }) => {
       return;
     }
 
-    console.log(pathname);
-
     const scrollerRect = scroller.getBoundingClientRect();
     const activeRect = active.getBoundingClientRect();
 
@@ -62,4 +60,4 @@ const Sidebar = ({ pathname }) => {
   );
 };
 
-export default withIsland(Sidebar, { name: 'Sidebar', on: { idle: true } });
+export default withIsland(Sidebar, { name: 'SideBar', on: { idle: true } });
