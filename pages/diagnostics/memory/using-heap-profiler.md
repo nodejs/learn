@@ -35,7 +35,7 @@ Connect to the dev-tools instance in chrome and then:
 - Select `Allocation instrumentation timeline`.
 - Start profiling.
 
-![heap profiler tutorial step 1][/static/images/docs/guides/diagnostics/heap-profiler-tutorial-1.png]
+![heap profiler tutorial step 1][heap profiler tutorial 1]
 
 Once the heap profiling is running, it is strongly recommended to run samples
 in order to identify memory issues. For example, if we were heap profiling a
@@ -47,11 +47,11 @@ $ ab -n 1000 -c 5 http://localhost:3000
 
 Then, press stop button when the load is complete:
 
-![heap profiler tutorial step 2][/static/images/docs/guides/diagnostics/heap-profiler-tutorial-2.png]
+![heap profiler tutorial step 2][heap profiler tutorial 2]
 
 Finally, look at the snapshot data:
 
-![heap profiler tutorial step 3][/static/images/docs/guides/diagnostics/heap-profiler-tutorial-3.png]
+![heap profiler tutorial step 3][heap profiler tutorial 3]
 
 Check the [useful links](#useful-links) section for further information
 about memory terminology.
@@ -81,13 +81,13 @@ Connect to the dev-tools instance and then:
 2. Select `Allocation sampling`.
 3. Start profiling.
 
-![heap profiler tutorial 4][ /static/images/docs/guides/diagnostics/heap-profiler-tutorial-4.png]
+![heap profiler tutorial 4][heap profiler tutorial 4]
 
 Produce some load and stop the profiler. It will generate a summary with
 allocation based on their stacktraces. You can focus on the functions with more
 heap allocations, see the example below:
 
-![heap profiler tutorial 5][ /static/images/docs/guides/diagnostics/heap-profiler-tutorial-5.png]
+![heap profiler tutorial 5][heap profiler tutorial 5]
 
 ## Useful Links
 
