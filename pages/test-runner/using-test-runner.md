@@ -46,7 +46,7 @@ There are some things you always want, so put them in a base setup file like the
 ## General setup
 
 <details>
-<summary>`test/setup.mjs`</summary>
+<summary><code>test/setup.mjs</code></summary>
 
 ```js
 import { register } from 'node:module';
@@ -182,7 +182,7 @@ export function getWorkspacePJSONs(path = './workspaces/*/package.json') {
 [`ServiceWorkerGlobalScope`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerGlobalScope) contains very specific APIs that don't exist in other environments, and some of its APIs are seemingly similar to others (ex `fetch`) but have augmented behaviour. You do not want these to spill into unrelated tests.
 
 <details>
-<summary>`test/setup.sw.mjs`</summary>
+<summary><code>test/setup.sw.mjs</code></summary>
 
 ```js
 import { beforeEach } from 'node:test';
@@ -241,7 +241,7 @@ These were popularised by Jest; now, many libraries implement such functionality
 There is no specific configuration _required_ except enabling the feature via [`--experimental-test-snapshots`](https://nodejs.org/docs/latest/api/cli.html#--experimental-test-snapshots). But to demonstrate the optional configuration, you would probably add something like the following to one of your existing test config files.
 
 <details>
-<summary>`test/setup.ui.mjs`</summary>
+<summary><code>test/setup.ui.mjs</code></summary>
 
 By default, node generates a filename that is incompatible with syntax highlighting detection: `.js.snapshot`. The generated file is actually a CJS file, so a more appropriate file name would end with `.snapshot.cjs` (or more succinctly `.snap.cjs` as below); this will also handle better in ESM projects.
 
@@ -299,7 +299,7 @@ describe('<SomeComponent>', () => {
 Unit tests are the simplest tests and generally require relatively nothing special. The vast majority of your tests will likely be unit tests, so it is important to keep this setup minimal because a small decrease to setup performance will magnify and cascade.
 
 <details>
-<summary>`test/setup.units.mjs`</summary>
+<summary><code>test/setup.units.mjs</code></summary>
 
 ```js
 import { register } from 'node:module';
@@ -343,7 +343,7 @@ describe('Cat', () => {
 UI tests generally require a DOM, and possibly other browser-specific APIs (such as [`IndexedDb`](https://developer.mozilla.org/docs/Web/API/IndexedDB_API) used below). These tend to be very complicated and expensive to setup.
 
 <details>
-<summary>`test/setup.ui.mjs`</summary>
+<summary><code>test/setup.ui.mjs</code></summary>
 
 If you use an API like `IndexedDb` but it's very isolated, a global mock like below is perhaps not the way to go. Instead, perhaps move this `beforeEach` into the specific test where `IndexedDb` will be accessed. Note that if the module accessing `IndexedDb` (or whatever) is itself widely accessed, either mock that module (probably the better option), or _do_ keep this here.
 
