@@ -136,7 +136,7 @@ function singSong(_song) {
   console.log(_song);
 }
 
-const song = getSong('beer');
+const song = getSong();
 // this will not work
 singSong(song);
 // Uncaught Error: song is '' empty, FEED ME A SONG!
