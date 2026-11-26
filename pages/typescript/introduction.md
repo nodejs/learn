@@ -114,3 +114,5 @@ TypeScript also includes powerful transformation capabilities, particularly for 
 
 Okay, so we have some TypeScript code. Now how do we run it?
 There are few possible ways to run TypeScript code, we will cover all of them in the next articles.
+
+If you want the high-level overview of Node.js's built-in approach first, start with [Type stripping in Node.js](/learn/typescript/type-stripping).
