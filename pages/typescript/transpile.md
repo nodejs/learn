@@ -4,7 +4,7 @@ authors: AugustinMauroy
 
 # Running TypeScript code using transpilation
 
-Transpilation is the process of converting source code from one language to another. In the case of TypeScript, it's the process of converting TypeScript code to JavaScript code. This is necessary because browsers and Node.js don't run TypeScript code directly.
+Transpilation is the process of converting source code from one language to another. In the case of TypeScript, it's the process of converting TypeScript code to JavaScript code. Browsers can't run TypeScript directly, and many Node.js workflows still compile to JavaScript first, even though recent Node.js releases can [run erasable TypeScript natively](/learn/typescript/run-natively).
 
 ## Compiling TypeScript to JavaScript
 
