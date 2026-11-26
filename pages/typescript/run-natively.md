@@ -28,7 +28,7 @@ Node.js does not type check your code when it runs TypeScript files. Use the Typ
 npx tsc --noEmit
 ```
 
-You can disable it via the [`--no-strip-types`](https://nodejs.org/docs/latest/api/cli.html#--no-strip-types) flag if needed (renamed from `--no-experimental-strip-types` when type stripping became stable).
+You can disable it via the [`--no-strip-types`](https://nodejs.org/docs/latest/api/cli.html#--no-strip-types) flag if needed.
 
 ```bash
 node --no-strip-types example.ts
