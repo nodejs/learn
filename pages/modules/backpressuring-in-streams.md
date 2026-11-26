@@ -67,8 +67,8 @@ A good example of why the backpressure mechanism implemented through streams is
 a great optimization can be demonstrated by comparing the internal system tools
 from Node.js' [`Stream`][] implementation.
 
-In one scenario, we will read a large file (approximately ~9 GB) using `fs.readFileSync()`: and compress it
-using the module [`zlib`][], that wraps around another compression tool, [`gzip(1)`][].
+In one scenario, we will read a large file (approximately ~9 GB) using `fs.readFileSync()` and compress it
+using [`node:zlib`][]:
 
 ```cjs
 const fs = require('node:fs');
@@ -88,7 +88,9 @@ const compressed = gzipSync(data);
 writeFileSync('The.Matrix.1080p.mkv.gz', compressed);
 ```
 
-This fails on two separate limits, whichever you hit first: the buffer size cap or heap exhaustion. Let’s rewrite it another way, using Node.js' [`Stream`][] but without backpressure:
+This approach has two potential failure points. First, `readFileSync()` loads the entire file into a single buffer, which can exceed Node.js' maximum buffer size for sufficiently large files. Second, even if the file fits within that limit, holding both the original file and its compressed output in memory can exhaust the process's available heap.
+
+So, let's take a different approach, using Node.js' [`Stream`][] without backpressure:
 
 ```cjs
 const { createReadStream, createWriteStream } = require('node:fs');
@@ -120,9 +122,9 @@ gzip.on('data', (chunk) => out.write(chunk));
 gzip.on('end', () => out.end());
 ```
 
-Neither write respects backpressure. Stage 1 keeps pushing into gzip even after `gzip.write()` returns false, and stage 2 keeps pushing into out even after `out.write()` returns false. Both internal buffers can grow without bound, so this is very prone to running out of memory. On a large compressible file both numbers climb fast and it heads for `JavaScript heap out of memory`.
+Neither write operation respects backpressure. The input stream continues writing to `gzip` even after `gzip.write()` returns `false`, and the gzip stream continues writing to `out` even after `out.write()` returns `false`. As a result, both streams' internal buffers can grow unchecked, potentially consuming all available memory,. On a large file, this can quickly lead to an Out-of-Memory error.
 
-To resolve this, we may use pipe, which pauses the read when `write()` returns false. When `gzip.write()` returns `false`, `pipe` calls `pause()` on the read stream, halting disk reads. Once gzip works through its backlog and the buffer empties, it emits a `'drain'` event, and `pipe` calls `resume()` to start reading again.
+To avoid this, we can use `pipe()`, which handles backpressure automatically. If `gzip.write()` returns `false`, the input stream is paused until `gzip` has processed enough buffered data and emits a `'drain'` event. The input stream then resumes reading from disk. The same mechanism applies between `gzip` and the output stream, keeping both buffers under control.
 
 ```cjs
 const fs = require('node:fs');
