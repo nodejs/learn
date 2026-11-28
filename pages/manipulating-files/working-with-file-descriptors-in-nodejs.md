@@ -82,6 +82,16 @@ async function example() {
 }
 example();
 ```
+# To Check whether open file is file or directory 
+
+filehandle = await fs.open('/Users/joe/test.txt', 'r'); // promise version under async (from above example)
+
+const stats = await filehandle.stat()
+
+stats.isDirectory() // return boolean result 
+
+
+
 
 ```mjs
 import fs from 'node:fs/promises';
